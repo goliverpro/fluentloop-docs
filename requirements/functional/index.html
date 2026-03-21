@@ -1003,7 +1003,7 @@
 
 <h1 id="requisitos-funcionais">Requisitos Funcionais<a class="headerlink" href="#requisitos-funcionais" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p><strong>Versão:</strong> 1.1.0 | <strong>Data:</strong> 2026-03-21 | <strong>Status:</strong> ✅ Aprovado</p>
+<p><strong>Versão:</strong> 2.0.0 | <strong>Data:</strong> 2026-03-21 | <strong>Status:</strong> ✅ Aprovado</p>
 </blockquote>
 <p>Requisitos organizados por módulo, usando a classificação <strong>MoSCoW</strong>:</p>
 <ul>
@@ -1012,6 +1012,36 @@
 <li><strong>C</strong> — Could have (desejável, entra se houver tempo)</li>
 <li><strong>W</strong> — Won't have (fora do escopo atual)</li>
 </ul>
+<hr />
+<h2 id="os-tres-pilares-do-fluentloop">Os Três Pilares do FluentLoop<a class="headerlink" href="#os-tres-pilares-do-fluentloop" title="Permanent link">&para;</a></h2>
+<p>O produto é estruturado em torno de três habilidades fundamentais da aprendizagem de idiomas:</p>
+<table>
+<thead>
+<tr>
+<th>Pilar</th>
+<th>Canal</th>
+<th>Módulos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✍️ <strong>Escrita</strong></td>
+<td>Chat por texto</td>
+<td>Módulos 2, 3, 4</td>
+</tr>
+<tr>
+<td>🎙️ <strong>Fala</strong></td>
+<td>Entrada de voz + feedback de pronúncia</td>
+<td>Módulo 8</td>
+</tr>
+<tr>
+<td>👂 <strong>Compreensão</strong></td>
+<td>Saída em áudio da IA + exercícios de escuta</td>
+<td>Módulo 9</td>
+</tr>
+</tbody>
+</table>
+<p>Todos os três pilares fazem parte do <strong>MVP</strong>. Conversar apenas por texto não é suficiente — o usuário precisa treinar falar e entender inglês falado.</p>
 <hr />
 <h2 id="modulo-1-autenticacao-e-conta">Módulo 1 — Autenticação e Conta<a class="headerlink" href="#modulo-1-autenticacao-e-conta" title="Permanent link">&para;</a></h2>
 <table>
@@ -1056,7 +1086,7 @@
 </tbody>
 </table>
 <hr />
-<h2 id="modulo-2-conversacao-por-texto">Módulo 2 — Conversação por Texto<a class="headerlink" href="#modulo-2-conversacao-por-texto" title="Permanent link">&para;</a></h2>
+<h2 id="modulo-2-conversacao-por-texto-pilar-escrita">Módulo 2 — Conversação por Texto <em>(Pilar: Escrita)</em><a class="headerlink" href="#modulo-2-conversacao-por-texto-pilar-escrita" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1099,7 +1129,7 @@
 </tbody>
 </table>
 <hr />
-<h2 id="modulo-3-correcao-de-erros">Módulo 3 — Correção de Erros<a class="headerlink" href="#modulo-3-correcao-de-erros" title="Permanent link">&para;</a></h2>
+<h2 id="modulo-3-correcao-de-erros-pilares-escrita-e-fala">Módulo 3 — Correção de Erros <em>(Pilares: Escrita e Fala)</em><a class="headerlink" href="#modulo-3-correcao-de-erros-pilares-escrita-e-fala" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1111,33 +1141,38 @@
 <tbody>
 <tr>
 <td>RF-13</td>
-<td>Após cada mensagem do usuário, a IA deve identificar erros gramaticais e de vocabulário</td>
+<td>A IA deve identificar erros gramaticais e de vocabulário após cada mensagem de texto</td>
 <td>M</td>
 </tr>
 <tr>
 <td>RF-14</td>
-<td>A correção deve sugerir a forma correta sem interromper o fluxo da conversa</td>
+<td>A IA deve identificar erros de pronúncia após cada mensagem de voz</td>
 <td>M</td>
 </tr>
 <tr>
 <td>RF-15</td>
+<td>A correção deve sugerir a forma correta sem interromper o fluxo da conversa</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-16</td>
 <td>O sistema deve classificar o tipo de erro (gramática, vocabulário, pronúncia)</td>
 <td>S</td>
 </tr>
 <tr>
-<td>RF-16</td>
+<td>RF-17</td>
 <td>O sistema deve acumular erros frequentes e exibi-los em resumo ao final da sessão</td>
 <td>S</td>
 </tr>
 <tr>
-<td>RF-17</td>
+<td>RF-18</td>
 <td>O usuário deve poder desativar a exibição de correções temporariamente</td>
 <td>C</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="modulo-4-roleplay-e-cenarios">Módulo 4 — Roleplay e Cenários<a class="headerlink" href="#modulo-4-roleplay-e-cenarios" title="Permanent link">&para;</a></h2>
+<h2 id="modulo-4-roleplay-e-cenarios-pilares-escrita-fala-e-compreensao">Módulo 4 — Roleplay e Cenários <em>(Pilares: Escrita, Fala e Compreensão)</em><a class="headerlink" href="#modulo-4-roleplay-e-cenarios-pilares-escrita-fala-e-compreensao" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1148,32 +1183,37 @@
 </thead>
 <tbody>
 <tr>
-<td>RF-18</td>
+<td>RF-19</td>
 <td>O sistema deve oferecer ao menos 3 cenários de roleplay no MVP</td>
 <td>M</td>
 </tr>
 <tr>
-<td>RF-19</td>
+<td>RF-20</td>
 <td>O usuário deve poder escolher o cenário antes de iniciar a sessão</td>
 <td>M</td>
 </tr>
 <tr>
-<td>RF-20</td>
+<td>RF-21</td>
 <td>A IA deve assumir um personagem/papel correspondente ao cenário escolhido</td>
 <td>M</td>
 </tr>
 <tr>
-<td>RF-21</td>
+<td>RF-22</td>
 <td>O sistema deve exibir descrição do cenário e do papel da IA antes de iniciar</td>
 <td>M</td>
 </tr>
 <tr>
-<td>RF-22</td>
+<td>RF-23</td>
+<td>Cada cenário deve suportar os três modos: texto, voz e compreensão</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-24</td>
 <td>O sistema deve permitir reiniciar o cenário sem sair da sessão</td>
 <td>S</td>
 </tr>
 <tr>
-<td>RF-23</td>
+<td>RF-25</td>
 <td>O sistema deve oferecer novos cenários progressivamente conforme o roadmap</td>
 <td>C</td>
 </tr>
@@ -1218,27 +1258,27 @@
 </thead>
 <tbody>
 <tr>
-<td>RF-24</td>
+<td>RF-26</td>
 <td>O sistema deve salvar todas as sessões de conversa do usuário</td>
 <td>M</td>
 </tr>
 <tr>
-<td>RF-25</td>
+<td>RF-27</td>
 <td>O usuário deve poder visualizar sessões anteriores</td>
 <td>M</td>
 </tr>
 <tr>
-<td>RF-26</td>
-<td>O sistema deve exibir data, duração e cenário de cada sessão</td>
+<td>RF-28</td>
+<td>O sistema deve exibir data, duração, cenário e pilar praticado por sessão</td>
 <td>S</td>
 </tr>
 <tr>
-<td>RF-27</td>
+<td>RF-29</td>
 <td>O usuário deve poder deletar sessões do histórico</td>
 <td>S</td>
 </tr>
 <tr>
-<td>RF-28</td>
+<td>RF-30</td>
 <td>O sistema deve exibir os erros mais frequentes consolidados por sessão</td>
 <td>S</td>
 </tr>
@@ -1256,37 +1296,37 @@
 </thead>
 <tbody>
 <tr>
-<td>RF-29</td>
-<td>O plano Free deve ser limitado a 10 mensagens por dia</td>
-<td>M</td>
-</tr>
-<tr>
-<td>RF-30</td>
-<td>O plano Free deve dar acesso a apenas 2 cenários de roleplay</td>
-<td>M</td>
-</tr>
-<tr>
 <td>RF-31</td>
-<td>O sistema deve exibir aviso quando o usuário estiver próximo do limite diário</td>
+<td>O plano Free deve ser limitado a 10 interações por dia (texto ou voz)</td>
 <td>M</td>
 </tr>
 <tr>
 <td>RF-32</td>
-<td>O sistema deve bloquear envio ao atingir o limite e exibir CTA de upgrade</td>
+<td>O plano Free deve dar acesso a apenas 2 cenários de roleplay</td>
 <td>M</td>
 </tr>
 <tr>
 <td>RF-33</td>
-<td>O plano Pro deve ter acesso ilimitado a mensagens, cenários e histórico completo</td>
+<td>O sistema deve exibir aviso quando o usuário estiver próximo do limite diário</td>
 <td>M</td>
 </tr>
 <tr>
 <td>RF-34</td>
-<td>O sistema deve processar pagamentos via Stripe</td>
+<td>O sistema deve bloquear envio ao atingir o limite e exibir CTA de upgrade</td>
 <td>M</td>
 </tr>
 <tr>
 <td>RF-35</td>
+<td>O plano Pro deve ter acesso ilimitado a interações, cenários e histórico completo</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-36</td>
+<td>O sistema deve processar pagamentos via Stripe</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-37</td>
 <td>O sistema deve enviar e-mail de confirmação após assinatura</td>
 <td>S</td>
 </tr>
@@ -1304,42 +1344,42 @@
 </thead>
 <tbody>
 <tr>
-<td>RF-39</td>
+<td>RF-38</td>
 <td>O sistema deve coletar o nível de inglês do usuário no onboarding (A2 / B1 / B2)</td>
 <td>M</td>
 </tr>
 <tr>
-<td>RF-40</td>
-<td>A IA deve adaptar o vocabulário, complexidade gramatical e ritmo da conversa ao nível do usuário</td>
+<td>RF-39</td>
+<td>A IA deve adaptar vocabulário, complexidade gramatical e ritmo ao nível do usuário</td>
 <td>M</td>
 </tr>
 <tr>
-<td>RF-41</td>
+<td>RF-40</td>
 <td>O sistema deve monitorar a taxa de erros por sessão para inferir a evolução do usuário</td>
 <td>M</td>
 </tr>
 <tr>
-<td>RF-42</td>
-<td>O sistema deve sugerir avanço de nível quando o usuário demonstrar consistência por ao menos 5 sessões com taxa de erro abaixo de 20%</td>
+<td>RF-41</td>
+<td>O sistema deve sugerir avanço de nível após 5 sessões com taxa de erro abaixo de 20%</td>
 <td>S</td>
 </tr>
 <tr>
-<td>RF-43</td>
+<td>RF-42</td>
 <td>O usuário deve poder aceitar ou recusar a sugestão de avanço de nível</td>
 <td>S</td>
 </tr>
 <tr>
-<td>RF-44</td>
+<td>RF-43</td>
 <td>O usuário deve poder ajustar manualmente seu nível nas configurações de perfil</td>
 <td>S</td>
 </tr>
 <tr>
-<td>RF-45</td>
+<td>RF-44</td>
 <td>O sistema deve registrar o histórico de evolução de nível do usuário</td>
 <td>S</td>
 </tr>
 <tr>
-<td>RF-46</td>
+<td>RF-45</td>
 <td>Os cenários de roleplay devem ter variantes de dificuldade ajustadas ao nível do usuário</td>
 <td>C</td>
 </tr>
@@ -1358,7 +1398,7 @@
 <tr>
 <td><strong>A2</strong></td>
 <td>Iniciante-intermediário</td>
-<td>Frases curtas, vocabulário básico, ritmo lento, mais tolerância a erros</td>
+<td>Frases curtas, vocabulário básico, ritmo lento, tolerância maior a erros</td>
 </tr>
 <tr>
 <td><strong>B1</strong></td>
@@ -1373,7 +1413,7 @@
 </tbody>
 </table>
 <hr />
-<h2 id="modulo-8-voz-pos-mvp">Módulo 8 — Voz <em>(Pós-MVP)</em><a class="headerlink" href="#modulo-8-voz-pos-mvp" title="Permanent link">&para;</a></h2>
+<h2 id="modulo-8-fala-pilar-fala-mvp">Módulo 8 — Fala <em>(Pilar: Fala)</em> — MVP<a class="headerlink" href="#modulo-8-fala-pilar-fala-mvp" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1384,19 +1424,92 @@
 </thead>
 <tbody>
 <tr>
+<td>RF-46</td>
+<td>O sistema deve aceitar entrada de voz do usuário via microfone</td>
+<td>M</td>
+</tr>
+<tr>
 <td>RF-47</td>
-<td>O sistema deve aceitar entrada de voz (speech-to-text)</td>
-<td>W</td>
+<td>O sistema deve transcrever a fala do usuário para texto (speech-to-text)</td>
+<td>M</td>
 </tr>
 <tr>
 <td>RF-48</td>
-<td>O sistema deve gerar resposta em áudio (text-to-speech)</td>
-<td>W</td>
+<td>A transcrição deve ser exibida ao usuário antes de ser enviada à IA</td>
+<td>M</td>
 </tr>
 <tr>
 <td>RF-49</td>
-<td>O sistema deve fornecer feedback de pronúncia</td>
-<td>W</td>
+<td>O usuário deve poder corrigir a transcrição antes de confirmar o envio</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-50</td>
+<td>O sistema deve identificar erros de pronúncia com base na transcrição e no contexto</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-51</td>
+<td>O sistema deve indicar quais palavras foram pronunciadas de forma incorreta</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-52</td>
+<td>O sistema deve sugerir a pronúncia correta com exemplos fonéticos (IPA ou áudio)</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-53</td>
+<td>O usuário deve poder alternar entre modo texto e modo voz na mesma sessão</td>
+<td>M</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="modulo-9-compreensao-auditiva-pilar-compreensao-mvp">Módulo 9 — Compreensão Auditiva <em>(Pilar: Compreensão)</em> — MVP<a class="headerlink" href="#modulo-9-compreensao-auditiva-pilar-compreensao-mvp" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Prioridade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF-54</td>
+<td>O sistema deve gerar respostas da IA em áudio (text-to-speech)</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-55</td>
+<td>O usuário deve poder controlar a velocidade de reprodução do áudio (normal / lento)</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-56</td>
+<td>O usuário deve poder repetir o áudio da última fala da IA</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-57</td>
+<td>O sistema deve oferecer modo "só escuta": IA fala, usuário escuta e responde por voz</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-58</td>
+<td>O sistema deve oferecer exercícios de compreensão: IA fala e usuário digita o que entendeu</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-59</td>
+<td>O sistema deve validar a resposta do exercício e indicar o que foi compreendido corretamente</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-60</td>
+<td>O usuário deve poder escolher o sotaque da IA (Americano / Britânico)</td>
+<td>C</td>
 </tr>
 </tbody>
 </table>
@@ -1408,17 +1521,29 @@
 <li>Respostas mantêm coerência com o contexto dos últimos 10 turnos da conversa</li>
 <li>A IA não abandona o idioma inglês, salvo quando explicitamente solicitado pelo usuário</li>
 </ul>
-<h3 id="rf-13-correcao-de-erros">RF-13 — Correção de erros<a class="headerlink" href="#rf-13-correcao-de-erros" title="Permanent link">&para;</a></h3>
+<h3 id="rf-13-rf-14-correcao-de-erros">RF-13 / RF-14 — Correção de erros<a class="headerlink" href="#rf-13-rf-14-correcao-de-erros" title="Permanent link">&para;</a></h3>
 <ul>
 <li>A correção aparece abaixo da mensagem do usuário, visualmente diferenciada</li>
 <li>A correção nunca substitui a resposta principal da IA na mesma mensagem</li>
-<li>Erros menores (artigos, preposições) são assinalados mas não bloqueiam o fluxo da conversa</li>
+<li>Erros de pronúncia são destacados com a palavra incorreta e a sugestão de correção</li>
 </ul>
-<h3 id="rf-29-rf-32-limites-do-plano-free">RF-29 / RF-32 — Limites do plano Free<a class="headerlink" href="#rf-29-rf-32-limites-do-plano-free" title="Permanent link">&para;</a></h3>
+<h3 id="rf-47-speech-to-text">RF-47 — Speech-to-text<a class="headerlink" href="#rf-47-speech-to-text" title="Permanent link">&para;</a></h3>
 <ul>
-<li>O contador de mensagens reseta à meia-noite no fuso horário do usuário (America/Sao_Paulo como padrão)</li>
-<li>O aviso de limite aparece ao atingir 8 mensagens (80% do limite)</li>
-<li>O bloqueio ao atingir 10 mensagens exibe modal com opção de upgrade para Pro</li>
+<li>Acurácia mínima de 85% para inglês com sotaque brasileiro em condições normais de microfone</li>
+<li>Latência de transcrição de até 3 segundos após o usuário parar de falar</li>
+<li>O sistema deve informar quando não conseguiu entender a fala e pedir para repetir</li>
+</ul>
+<h3 id="rf-54-text-to-speech">RF-54 — Text-to-speech<a class="headerlink" href="#rf-54-text-to-speech" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Áudio gerado em até 3 segundos após a resposta da IA estar pronta</li>
+<li>Qualidade de voz natural (não robótica) — preferencialmente voz neural</li>
+<li>Velocidade padrão compatível com fala nativa em nível B1–B2</li>
+</ul>
+<h3 id="rf-31-rf-34-limites-do-plano-free">RF-31 / RF-34 — Limites do plano Free<a class="headerlink" href="#rf-31-rf-34-limites-do-plano-free" title="Permanent link">&para;</a></h3>
+<ul>
+<li>O contador reseta à meia-noite no fuso do usuário (America/Sao_Paulo como padrão)</li>
+<li>O aviso de limite aparece ao atingir 8 interações (80% do limite)</li>
+<li>O bloqueio ao atingir 10 interações exibe modal com opção de upgrade para Pro</li>
 </ul>
 
 
