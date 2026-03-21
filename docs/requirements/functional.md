@@ -1,6 +1,6 @@
 # Requisitos Funcionais
 
-> **Versão:** 1.0.0 | **Data:** 2026-03-21 | **Status:** ✅ Aprovado
+> **Versão:** 1.1.0 | **Data:** 2026-03-21 | **Status:** ✅ Aprovado
 
 Requisitos organizados por módulo, usando a classificação **MoSCoW**:
 
@@ -96,13 +96,36 @@ Requisitos organizados por módulo, usando a classificação **MoSCoW**:
 
 ---
 
-## Módulo 7 — Voz *(Pós-MVP)*
+## Módulo 7 — Nivelamento e Progressão
 
 | ID | Requisito | Prioridade |
 |---|---|---|
-| RF-36 | O sistema deve aceitar entrada de voz (speech-to-text) | W |
-| RF-37 | O sistema deve gerar resposta em áudio (text-to-speech) | W |
-| RF-38 | O sistema deve fornecer feedback de pronúncia | W |
+| RF-39 | O sistema deve coletar o nível de inglês do usuário no onboarding (A2 / B1 / B2) | M |
+| RF-40 | A IA deve adaptar o vocabulário, complexidade gramatical e ritmo da conversa ao nível do usuário | M |
+| RF-41 | O sistema deve monitorar a taxa de erros por sessão para inferir a evolução do usuário | M |
+| RF-42 | O sistema deve sugerir avanço de nível quando o usuário demonstrar consistência por ao menos 5 sessões com taxa de erro abaixo de 20% | S |
+| RF-43 | O usuário deve poder aceitar ou recusar a sugestão de avanço de nível | S |
+| RF-44 | O usuário deve poder ajustar manualmente seu nível nas configurações de perfil | S |
+| RF-45 | O sistema deve registrar o histórico de evolução de nível do usuário | S |
+| RF-46 | Os cenários de roleplay devem ter variantes de dificuldade ajustadas ao nível do usuário | C |
+
+**Níveis suportados:**
+
+| Nível | Descrição | Comportamento da IA |
+|---|---|---|
+| **A2** | Iniciante-intermediário | Frases curtas, vocabulário básico, ritmo lento, mais tolerância a erros |
+| **B1** | Intermediário | Frases completas, vocabulário cotidiano, correção ativa |
+| **B2** | Intermediário-avançado | Expressões idiomáticas, ritmo natural, correção rigorosa |
+
+---
+
+## Módulo 8 — Voz *(Pós-MVP)*
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-47 | O sistema deve aceitar entrada de voz (speech-to-text) | W |
+| RF-48 | O sistema deve gerar resposta em áudio (text-to-speech) | W |
+| RF-49 | O sistema deve fornecer feedback de pronúncia | W |
 
 ---
 

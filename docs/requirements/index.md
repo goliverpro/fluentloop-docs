@@ -18,7 +18,7 @@
 
 | Categoria | Total |
 |---|---|
-| Requisitos Funcionais (MVP) | 35 |
+| Requisitos Funcionais (MVP) | 43 |
 | Requisitos Funcionais (Pós-MVP) | 3 |
 | Requisitos Não-Funcionais | 27 |
 | Casos de Uso documentados | 6 |
@@ -33,4 +33,5 @@
 - Roleplay e Cenários
 - Histórico de Sessões
 - Planos e Limites (Free vs Pro)
+- Nivelamento e Progressão
 - Voz *(pós-MVP)*
