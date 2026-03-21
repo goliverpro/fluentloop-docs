@@ -1,0 +1,69 @@
+site_name: FluentLoop Docs
+site_description: Documentação oficial do FluentLoop — AI-powered English conversation practice
+site_url: https://seu-usuario.github.io/fluentloop-docs
+repo_url: https://github.com/seu-usuario/fluentloop-docs
+repo_name: fluentloop-docs
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: pt
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Modo escuro
+    - scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Modo claro
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - search.suggest
+    - content.action.edit
+    - content.code.copy
+    - toc.integrate
+
+plugins:
+  - search:
+      lang: pt
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Produto:
+    - Visão: product/vision.md
+  - Requisitos:
+    - Visão Geral: requirements/index.md
+  - Arquitetura:
+    - Visão Geral: architecture/index.md
+    - ADRs: adr/index.md
+  - Design:
+    - Visão Geral: design/index.md
+  - Testes:
+    - Estratégia: testing/index.md
+  - Deploy:
+    - Visão Geral: deployment/index.md

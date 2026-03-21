@@ -1,0 +1,39 @@
+name: 📌 Nova ADR
+description: Registrar uma decisão arquitetural
+title: "[ADR] "
+labels: ["adr", "architecture"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Título da Decisão
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      options:
+        - Proposto
+        - Aceito
+        - Depreciado
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: Decisão
+    validations:
+      required: true
+  - type: textarea
+    id: consequences
+    attributes:
+      label: Consequências
+    validations:
+      required: true

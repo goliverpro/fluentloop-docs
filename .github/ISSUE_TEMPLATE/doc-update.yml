@@ -1,0 +1,30 @@
+name: 📝 Atualização de Documentação
+description: Propor adição ou correção em um documento
+title: "[DOCS] "
+labels: ["documentation"]
+body:
+  - type: dropdown
+    id: section
+    attributes:
+      label: Seção
+      options:
+        - Produto / Visão
+        - Requisitos
+        - Arquitetura
+        - Design
+        - Testes
+        - Deploy
+        - ADR
+        - Outro
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: O que precisa ser atualizado?
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Por quê?
