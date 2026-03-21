@@ -1,6 +1,6 @@
 # 📝 Levantamento de Requisitos
 
-> **Versão:** 1.0.0 | **Data:** 2026-03-21 | **Status:** ✅ Concluído
+> **Versão:** 2.0.0 | **Data:** 2026-03-21 | **Status:** ✅ Concluído
 
 ---
 
@@ -18,20 +18,30 @@
 
 | Categoria | Total |
 |---|---|
-| Requisitos Funcionais (MVP) | 43 |
-| Requisitos Funcionais (Pós-MVP) | 3 |
+| Requisitos Funcionais (MVP) | 60 |
 | Requisitos Não-Funcionais | 27 |
 | Casos de Uso documentados | 6 |
+
+---
+
+## Os Três Pilares do Produto
+
+| Pilar | Módulos | Status |
+|---|---|---|
+| ✍️ Escrita | Módulos 2, 3, 4 | MVP |
+| 🎙️ Fala | Módulo 8 | MVP |
+| 👂 Compreensão | Módulo 9 | MVP |
 
 ---
 
 ## Módulos cobertos
 
 - Autenticação e Conta
-- Conversação por Texto
-- Correção de Erros
-- Roleplay e Cenários
+- Conversação por Texto *(Escrita)*
+- Correção de Erros *(Escrita e Fala)*
+- Roleplay e Cenários *(Escrita, Fala e Compreensão)*
 - Histórico de Sessões
 - Planos e Limites (Free vs Pro)
 - Nivelamento e Progressão
-- Voz *(pós-MVP)*
+- Fala — Speech-to-text + feedback de pronúncia *(MVP)*
+- Compreensão Auditiva — Text-to-speech + exercícios de escuta *(MVP)*

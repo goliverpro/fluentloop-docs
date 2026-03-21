@@ -32,13 +32,15 @@ O Brasil tem milhões de estudantes de inglês no nível intermediário — pess
 
 ## A Solução
 
-O FluentLoop oferece um parceiro de conversação com IA disponível 24/7 que:
+O FluentLoop oferece um parceiro de conversação com IA disponível 24/7 estruturado em **três pilares de aprendizagem**:
 
-- Conversa de forma natural e contextualizada em inglês
-- Simula situações reais do cotidiano, trabalho e viagens
-- Identifica e corrige erros sem interromper bruscamente a conversa
-- Adapta o nível de complexidade ao perfil B1–B2
-- Aceita tanto texto quanto voz como entrada
+| Pilar | O que o usuário pratica |
+|---|---|
+| ✍️ **Escrita** | Expressar ideias em inglês por texto, com correção gramatical e de vocabulário em tempo real |
+| 🎙️ **Fala** | Pronunciar inglês corretamente, com feedback de pronúncia palavra a palavra |
+| 👂 **Compreensão** | Entender inglês falado em velocidade natural, com controle de ritmo e exercícios de escuta |
+
+Os três pilares estão presentes no MVP — conversar apenas por texto não é suficiente para quebrar o platô do B1.
 
 ---
 
@@ -59,22 +61,27 @@ O FluentLoop oferece um parceiro de conversação com IA disponível 24/7 que:
 
 ### MVP (Lançamento)
 
-| Funcionalidade | Descrição |
-|---|---|
-| 💬 Chat por texto | Conversa livre com IA em inglês |
-| ✏️ Correção em tempo real | Sinaliza erros e sugere melhorias após cada mensagem |
-| 🎭 Roleplay por texto | Usuário escolhe cenário e IA assume um papel |
-| 📊 Histórico de sessões | Registro das conversas e erros frequentes |
-| 🔐 Autenticação | Login com e-mail ou Google |
+| Pilar | Funcionalidade | Descrição |
+|---|---|---|
+| ✍️ Escrita | Chat por texto | Conversa livre com IA em inglês |
+| ✍️ Escrita | Correção em tempo real | Sinaliza erros gramaticais e de vocabulário após cada mensagem |
+| 🎙️ Fala | Entrada por voz | Usuário fala, sistema transcreve e IA responde |
+| 🎙️ Fala | Feedback de pronúncia | Identifica erros de pronúncia e sugere a forma correta |
+| 👂 Compreensão | Saída em áudio | IA responde também em voz com controle de velocidade |
+| 👂 Compreensão | Exercícios de escuta | IA fala, usuário digita o que entendeu |
+| — | Roleplay com cenários | Usuário escolhe cenário e pratica nos três modos |
+| — | Nivelamento adaptativo | IA ajusta dificuldade ao nível A2/B1/B2 do usuário |
+| — | Histórico de sessões | Registro das conversas e erros frequentes |
+| — | Autenticação | Login com e-mail ou Google |
 
 ### Roadmap Pós-MVP
 
 | Funcionalidade | Prioridade |
 |---|---|
-| 🎙️ Entrada e saída por voz | Alta |
-| 📈 Dashboard de progresso | Alta |
+| 📈 Dashboard de progresso por pilar | Alta |
 | 🏆 Sistema de conquistas e streak | Média |
 | 🌍 Novos cenários de roleplay | Média |
+| 📱 App mobile (PWA) | Média |
 
 ---
 
@@ -104,8 +111,8 @@ O FluentLoop oferece um parceiro de conversação com IA disponível 24/7 que:
 
 | Plano | Limites | Preço |
 |---|---|---|
-| **Free** | 10 mensagens/dia, 2 cenários, sem voz | Grátis |
-| **Pro** | Ilimitado, todos os cenários, voz, dashboard | R$29,90/mês |
+| **Free** | 10 interações/dia, 2 cenários, todos os pilares (com limite) | Grátis |
+| **Pro** | Ilimitado, todos os cenários, todos os pilares, dashboard | R$29,90/mês |
 | **Anual** | Tudo do Pro | R$249,00/ano |
 
 ---
