@@ -1002,14 +1002,255 @@
 
 
 <h1 id="requisitos-nao-funcionais">Requisitos Não-Funcionais<a class="headerlink" href="#requisitos-nao-funcionais" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Em construção</p>
-<p>Este documento será preenchido em uma próxima fase.</p>
-<p><strong>O que virá aqui:</strong>
-- Performance, segurança e escalabilidade
-- SLAs e métricas de qualidade
-- Restrições técnicas e de compliance</p>
-</div>
+<blockquote>
+<p><strong>Versão:</strong> 1.0.0 | <strong>Data:</strong> 2026-03-21 | <strong>Status:</strong> ✅ Aprovado</p>
+</blockquote>
+<hr />
+<h2 id="rnf-01-performance">RNF-01 — Performance<a class="headerlink" href="#rnf-01-performance" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Meta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RNF-01.1</td>
+<td>Tempo de resposta da IA (text)</td>
+<td>≤ 5 segundos (P95)</td>
+</tr>
+<tr>
+<td>RNF-01.2</td>
+<td>Tempo de carregamento inicial da aplicação</td>
+<td>≤ 3 segundos em 4G</td>
+</tr>
+<tr>
+<td>RNF-01.3</td>
+<td>Tempo de resposta de APIs internas (auth, histórico)</td>
+<td>≤ 500ms (P95)</td>
+</tr>
+<tr>
+<td>RNF-01.4</td>
+<td>A aplicação deve ser funcional em conexões de 3G estável</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="rnf-02-escalabilidade">RNF-02 — Escalabilidade<a class="headerlink" href="#rnf-02-escalabilidade" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Meta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RNF-02.1</td>
+<td>A arquitetura deve suportar crescimento sem redesenho estrutural</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RNF-02.2</td>
+<td>O backend deve ser capaz de atender 1.000 usuários simultâneos no MVP</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RNF-02.3</td>
+<td>O serviço de IA deve usar rate limiting por usuário para controlar custos</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="rnf-03-seguranca">RNF-03 — Segurança<a class="headerlink" href="#rnf-03-seguranca" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Detalhes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RNF-03.1</td>
+<td>Todas as comunicações devem usar HTTPS/TLS 1.2+</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RNF-03.2</td>
+<td>Senhas devem ser armazenadas com hash bcrypt (custo ≥ 12)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RNF-03.3</td>
+<td>Tokens de autenticação devem expirar em 24h (access) e 30 dias (refresh)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RNF-03.4</td>
+<td>A API deve validar e sanitizar todos os inputs do usuário</td>
+<td>Prevenção de XSS e injection</td>
+</tr>
+<tr>
+<td>RNF-03.5</td>
+<td>Rate limiting deve ser aplicado nos endpoints de autenticação</td>
+<td>Prevenção de brute force</td>
+</tr>
+<tr>
+<td>RNF-03.6</td>
+<td>Chaves de API de terceiros (IA, Stripe) não devem ser expostas no frontend</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RNF-03.7</td>
+<td>Dados de conversas devem ser armazenados criptografados em repouso</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="rnf-04-disponibilidade">RNF-04 — Disponibilidade<a class="headerlink" href="#rnf-04-disponibilidade" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Meta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RNF-04.1</td>
+<td>SLA de disponibilidade da aplicação</td>
+<td>≥ 99% (exclui janelas de manutenção)</td>
+</tr>
+<tr>
+<td>RNF-04.2</td>
+<td>Janelas de manutenção devem ser comunicadas com 24h de antecedência</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RNF-04.3</td>
+<td>Em caso de indisponibilidade da API de IA, exibir mensagem amigável ao usuário</td>
+<td>Sem crash da aplicação</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="rnf-05-usabilidade">RNF-05 — Usabilidade<a class="headerlink" href="#rnf-05-usabilidade" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Detalhes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RNF-05.1</td>
+<td>A interface deve ser responsiva para desktop e mobile</td>
+<td>Mobile-first</td>
+</tr>
+<tr>
+<td>RNF-05.2</td>
+<td>O fluxo de onboarding deve ter no máximo 3 etapas até o primeiro chat</td>
+<td>Reduzir fricção</td>
+</tr>
+<tr>
+<td>RNF-05.3</td>
+<td>O sistema deve exibir feedback visual para todas as ações do usuário</td>
+<td>Loading, sucesso, erro</td>
+</tr>
+<tr>
+<td>RNF-05.4</td>
+<td>Mensagens de erro devem ser compreensíveis e orientar a ação do usuário</td>
+<td>Sem jargão técnico</td>
+</tr>
+<tr>
+<td>RNF-05.5</td>
+<td>A aplicação deve funcionar nos browsers modernos (Chrome, Firefox, Safari, Edge)</td>
+<td>Últimas 2 versões</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="rnf-06-manutenibilidade">RNF-06 — Manutenibilidade<a class="headerlink" href="#rnf-06-manutenibilidade" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Detalhes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RNF-06.1</td>
+<td>O código deve ter cobertura de testes de ao menos 70% nas funcionalidades críticas</td>
+<td>Auth, chat, billing</td>
+</tr>
+<tr>
+<td>RNF-06.2</td>
+<td>A aplicação deve ter logs estruturados para rastreamento de erros</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RNF-06.3</td>
+<td>O ambiente de produção deve ter monitoramento e alertas configurados</td>
+<td>Uptime + erros</td>
+</tr>
+<tr>
+<td>RNF-06.4</td>
+<td>O deploy deve ser automatizado via CI/CD</td>
+<td>GitHub Actions</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="rnf-07-privacidade-e-compliance">RNF-07 — Privacidade e Compliance<a class="headerlink" href="#rnf-07-privacidade-e-compliance" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Detalhes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RNF-07.1</td>
+<td>O produto deve estar em conformidade com a LGPD</td>
+<td>Dados de usuários brasileiros</td>
+</tr>
+<tr>
+<td>RNF-07.2</td>
+<td>O usuário deve poder exportar seus dados e histórico</td>
+<td>Direito de portabilidade</td>
+</tr>
+<tr>
+<td>RNF-07.3</td>
+<td>O usuário deve poder excluir permanentemente sua conta e todos os dados</td>
+<td>Direito ao esquecimento</td>
+</tr>
+<tr>
+<td>RNF-07.4</td>
+<td>A política de privacidade deve ser clara e acessível antes do cadastro</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RNF-07.5</td>
+<td>Conversas não devem ser usadas para treinar modelos sem consentimento explícito</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
 
 
 

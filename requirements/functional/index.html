@@ -1002,14 +1002,344 @@
 
 
 <h1 id="requisitos-funcionais">Requisitos Funcionais<a class="headerlink" href="#requisitos-funcionais" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Em construção</p>
-<p>Este documento será preenchido na <strong>Fase 2: Levantamento de Requisitos</strong>.</p>
-<p><strong>O que virá aqui:</strong>
-- Lista completa de RFs por módulo
-- Critérios de aceitação por funcionalidade
-- Priorização (Must have / Should have / Could have / Won't have)</p>
-</div>
+<blockquote>
+<p><strong>Versão:</strong> 1.0.0 | <strong>Data:</strong> 2026-03-21 | <strong>Status:</strong> ✅ Aprovado</p>
+</blockquote>
+<p>Requisitos organizados por módulo, usando a classificação <strong>MoSCoW</strong>:</p>
+<ul>
+<li><strong>M</strong> — Must have (essencial para o MVP)</li>
+<li><strong>S</strong> — Should have (importante, mas não bloqueia o lançamento)</li>
+<li><strong>C</strong> — Could have (desejável, entra se houver tempo)</li>
+<li><strong>W</strong> — Won't have (fora do escopo atual)</li>
+</ul>
+<hr />
+<h2 id="modulo-1-autenticacao-e-conta">Módulo 1 — Autenticação e Conta<a class="headerlink" href="#modulo-1-autenticacao-e-conta" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Prioridade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF-01</td>
+<td>O sistema deve permitir cadastro com e-mail e senha</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-02</td>
+<td>O sistema deve permitir login com Google (OAuth 2.0)</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-03</td>
+<td>O sistema deve enviar e-mail de verificação de conta</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-04</td>
+<td>O sistema deve permitir recuperação de senha via e-mail</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-05</td>
+<td>O sistema deve permitir que o usuário edite nome e foto de perfil</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-06</td>
+<td>O sistema deve permitir exclusão de conta e dados pelo usuário</td>
+<td>S</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="modulo-2-conversacao-por-texto">Módulo 2 — Conversação por Texto<a class="headerlink" href="#modulo-2-conversacao-por-texto" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Prioridade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF-07</td>
+<td>O sistema deve oferecer um chat de texto em inglês com IA</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-08</td>
+<td>A IA deve responder de forma natural, contextualizada e fluida</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-09</td>
+<td>O sistema deve suportar sessões de conversa com histórico contínuo</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-10</td>
+<td>O sistema deve permitir que o usuário encerre e inicie novas sessões</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-11</td>
+<td>O sistema deve exibir indicador de "digitando..." enquanto a IA processa</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-12</td>
+<td>O sistema deve permitir que o usuário copie mensagens da conversa</td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="modulo-3-correcao-de-erros">Módulo 3 — Correção de Erros<a class="headerlink" href="#modulo-3-correcao-de-erros" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Prioridade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF-13</td>
+<td>Após cada mensagem do usuário, a IA deve identificar erros gramaticais e de vocabulário</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-14</td>
+<td>A correção deve sugerir a forma correta sem interromper o fluxo da conversa</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-15</td>
+<td>O sistema deve classificar o tipo de erro (gramática, vocabulário, pronúncia)</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-16</td>
+<td>O sistema deve acumular erros frequentes e exibi-los em resumo ao final da sessão</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-17</td>
+<td>O usuário deve poder desativar a exibição de correções temporariamente</td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="modulo-4-roleplay-e-cenarios">Módulo 4 — Roleplay e Cenários<a class="headerlink" href="#modulo-4-roleplay-e-cenarios" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Prioridade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF-18</td>
+<td>O sistema deve oferecer ao menos 3 cenários de roleplay no MVP</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-19</td>
+<td>O usuário deve poder escolher o cenário antes de iniciar a sessão</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-20</td>
+<td>A IA deve assumir um personagem/papel correspondente ao cenário escolhido</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-21</td>
+<td>O sistema deve exibir descrição do cenário e do papel da IA antes de iniciar</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-22</td>
+<td>O sistema deve permitir reiniciar o cenário sem sair da sessão</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-23</td>
+<td>O sistema deve oferecer novos cenários progressivamente conforme o roadmap</td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cenários do MVP:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Cenário</th>
+<th>Papel da IA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SC-01</td>
+<td>Check-in em hotel</td>
+<td>Recepcionista</td>
+</tr>
+<tr>
+<td>SC-02</td>
+<td>Daily standup em inglês</td>
+<td>Colega de trabalho / facilitador</td>
+</tr>
+<tr>
+<td>SC-03</td>
+<td>Small talk casual</td>
+<td>Amigo nativo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="modulo-5-historico-de-sessoes">Módulo 5 — Histórico de Sessões<a class="headerlink" href="#modulo-5-historico-de-sessoes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Prioridade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF-24</td>
+<td>O sistema deve salvar todas as sessões de conversa do usuário</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-25</td>
+<td>O usuário deve poder visualizar sessões anteriores</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-26</td>
+<td>O sistema deve exibir data, duração e cenário de cada sessão</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-27</td>
+<td>O usuário deve poder deletar sessões do histórico</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-28</td>
+<td>O sistema deve exibir os erros mais frequentes consolidados por sessão</td>
+<td>S</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="modulo-6-planos-e-limites-free-vs-pro">Módulo 6 — Planos e Limites (Free vs Pro)<a class="headerlink" href="#modulo-6-planos-e-limites-free-vs-pro" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Prioridade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF-29</td>
+<td>O plano Free deve ser limitado a 10 mensagens por dia</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-30</td>
+<td>O plano Free deve dar acesso a apenas 2 cenários de roleplay</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-31</td>
+<td>O sistema deve exibir aviso quando o usuário estiver próximo do limite diário</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-32</td>
+<td>O sistema deve bloquear envio ao atingir o limite e exibir CTA de upgrade</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-33</td>
+<td>O plano Pro deve ter acesso ilimitado a mensagens, cenários e histórico completo</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-34</td>
+<td>O sistema deve processar pagamentos via Stripe</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-35</td>
+<td>O sistema deve enviar e-mail de confirmação após assinatura</td>
+<td>S</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="modulo-7-voz-pos-mvp">Módulo 7 — Voz <em>(Pós-MVP)</em><a class="headerlink" href="#modulo-7-voz-pos-mvp" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Prioridade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF-36</td>
+<td>O sistema deve aceitar entrada de voz (speech-to-text)</td>
+<td>W</td>
+</tr>
+<tr>
+<td>RF-37</td>
+<td>O sistema deve gerar resposta em áudio (text-to-speech)</td>
+<td>W</td>
+</tr>
+<tr>
+<td>RF-38</td>
+<td>O sistema deve fornecer feedback de pronúncia</td>
+<td>W</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="criterios-de-aceitacao-funcionalidades-core">Critérios de Aceitação — Funcionalidades Core<a class="headerlink" href="#criterios-de-aceitacao-funcionalidades-core" title="Permanent link">&para;</a></h2>
+<h3 id="rf-08-qualidade-da-resposta-da-ia">RF-08 — Qualidade da resposta da IA<a class="headerlink" href="#rf-08-qualidade-da-resposta-da-ia" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A IA responde em até 5 segundos em condições normais de rede</li>
+<li>Respostas mantêm coerência com o contexto dos últimos 10 turnos da conversa</li>
+<li>A IA não abandona o idioma inglês, salvo quando explicitamente solicitado pelo usuário</li>
+</ul>
+<h3 id="rf-13-correcao-de-erros">RF-13 — Correção de erros<a class="headerlink" href="#rf-13-correcao-de-erros" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A correção aparece abaixo da mensagem do usuário, visualmente diferenciada</li>
+<li>A correção nunca substitui a resposta principal da IA na mesma mensagem</li>
+<li>Erros menores (artigos, preposições) são assinalados mas não bloqueiam o fluxo da conversa</li>
+</ul>
+<h3 id="rf-29-rf-32-limites-do-plano-free">RF-29 / RF-32 — Limites do plano Free<a class="headerlink" href="#rf-29-rf-32-limites-do-plano-free" title="Permanent link">&para;</a></h3>
+<ul>
+<li>O contador de mensagens reseta à meia-noite no fuso horário do usuário (America/Sao_Paulo como padrão)</li>
+<li>O aviso de limite aparece ao atingir 8 mensagens (80% do limite)</li>
+<li>O bloqueio ao atingir 10 mensagens exibe modal com opção de upgrade para Pro</li>
+</ul>
 
 
 

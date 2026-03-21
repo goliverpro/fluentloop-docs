@@ -1002,14 +1002,163 @@
 
 
 <h1 id="casos-de-uso">Casos de Uso<a class="headerlink" href="#casos-de-uso" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Em construção</p>
-<p>Este documento será preenchido em uma próxima fase.</p>
-<p><strong>O que virá aqui:</strong>
-- Diagramas de casos de uso
-- Fluxos principais e alternativos
-- Atores e pré-condições</p>
-</div>
+<blockquote>
+<p><strong>Versão:</strong> 1.0.0 | <strong>Data:</strong> 2026-03-21 | <strong>Status:</strong> ✅ Aprovado</p>
+</blockquote>
+<hr />
+<h2 id="atores">Atores<a class="headerlink" href="#atores" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Ator</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Usuário Free</strong></td>
+<td>Usuário cadastrado no plano gratuito</td>
+</tr>
+<tr>
+<td><strong>Usuário Pro</strong></td>
+<td>Usuário com assinatura ativa</td>
+</tr>
+<tr>
+<td><strong>IA (Claude)</strong></td>
+<td>Serviço de inteligência artificial de conversação</td>
+</tr>
+<tr>
+<td><strong>Sistema</strong></td>
+<td>A aplicação FluentLoop em si</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="uc-01-cadastro-e-primeiro-acesso">UC-01 — Cadastro e Primeiro Acesso<a class="headerlink" href="#uc-01-cadastro-e-primeiro-acesso" title="Permanent link">&para;</a></h2>
+<p><strong>Ator principal:</strong> Usuário Free
+<strong>Pré-condição:</strong> Usuário não possui conta
+<strong>Pós-condição:</strong> Usuário autenticado e na tela principal</p>
+<h3 id="fluxo-principal">Fluxo Principal<a class="headerlink" href="#fluxo-principal" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Usuário acessa o FluentLoop pela primeira vez</li>
+<li>Sistema exibe tela de boas-vindas com opções de cadastro</li>
+<li>Usuário escolhe cadastro com e-mail ou Google</li>
+<li><strong>[E-mail]</strong> Usuário preenche nome, e-mail e senha → Sistema envia e-mail de verificação</li>
+<li><strong>[Google]</strong> Sistema redireciona para OAuth do Google → Usuário autoriza</li>
+<li>Sistema cria conta e redireciona para onboarding</li>
+<li>Onboarding: usuário informa nível de inglês (A2 / B1 / B2)</li>
+<li>Sistema exibe tela principal com acesso ao chat</li>
+</ol>
+<h3 id="fluxos-alternativos">Fluxos Alternativos<a class="headerlink" href="#fluxos-alternativos" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>FA1 — E-mail já cadastrado:</strong> Sistema exibe mensagem e sugere login ou recuperação de senha</li>
+<li><strong>FA2 — Verificação de e-mail pendente:</strong> Sistema exibe aviso e permite reenvio do e-mail</li>
+</ul>
+<hr />
+<h2 id="uc-02-iniciar-sessao-de-conversacao-livre">UC-02 — Iniciar Sessão de Conversação Livre<a class="headerlink" href="#uc-02-iniciar-sessao-de-conversacao-livre" title="Permanent link">&para;</a></h2>
+<p><strong>Ator principal:</strong> Usuário Free ou Pro
+<strong>Pré-condição:</strong> Usuário autenticado e com limite diário disponível
+<strong>Pós-condição:</strong> Sessão de chat iniciada</p>
+<h3 id="fluxo-principal_1">Fluxo Principal<a class="headerlink" href="#fluxo-principal_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Usuário acessa a tela de chat</li>
+<li>Sistema exibe campo de mensagem e histórico vazio (nova sessão)</li>
+<li>Usuário digita mensagem em inglês e envia</li>
+<li>Sistema exibe indicador de "digitando..."</li>
+<li>IA processa e retorna resposta em inglês</li>
+<li>Sistema exibe resposta da IA e, abaixo da mensagem do usuário, a correção (se houver erros)</li>
+<li>Usuário continua a conversa (repete passos 3–6)</li>
+<li>Usuário encerra a sessão</li>
+<li>Sistema salva a sessão e exibe resumo de erros da sessão</li>
+</ol>
+<h3 id="fluxos-alternativos_1">Fluxos Alternativos<a class="headerlink" href="#fluxos-alternativos_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>FA1 — Limite atingido (Free):</strong> Ao enviar a 11ª mensagem, sistema bloqueia e exibe modal de upgrade</li>
+<li><strong>FA2 — Erro na API de IA:</strong> Sistema exibe mensagem amigável e sugere tentar novamente</li>
+<li><strong>FA3 — Conexão perdida:</strong> Sistema salva o progresso e permite retomar ao reconectar</li>
+</ul>
+<hr />
+<h2 id="uc-03-iniciar-sessao-de-roleplay">UC-03 — Iniciar Sessão de Roleplay<a class="headerlink" href="#uc-03-iniciar-sessao-de-roleplay" title="Permanent link">&para;</a></h2>
+<p><strong>Ator principal:</strong> Usuário Free ou Pro
+<strong>Pré-condição:</strong> Usuário autenticado; plano Free tem acesso a 2 cenários
+<strong>Pós-condição:</strong> Sessão de roleplay iniciada com contexto definido</p>
+<h3 id="fluxo-principal_2">Fluxo Principal<a class="headerlink" href="#fluxo-principal_2" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Usuário acessa a seção de Roleplay</li>
+<li>Sistema exibe lista de cenários disponíveis</li>
+<li>Usuário seleciona um cenário (ex: "Check-in em hotel")</li>
+<li>Sistema exibe descrição do cenário e do papel que a IA irá assumir</li>
+<li>Usuário confirma e inicia a sessão</li>
+<li>IA assume o personagem e abre a conversa com a primeira linha do roleplay</li>
+<li>Usuário responde e a conversa segue (mesmo fluxo do UC-02)</li>
+<li>Usuário encerra ou reinicia o cenário</li>
+</ol>
+<h3 id="fluxos-alternativos_2">Fluxos Alternativos<a class="headerlink" href="#fluxos-alternativos_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>FA1 — Cenário bloqueado (Free):</strong> Sistema exibe cadeado no cenário e CTA para upgrade Pro</li>
+<li><strong>FA2 — Usuário reinicia o cenário:</strong> Sistema descarta a sessão atual e recomeça do passo 6</li>
+</ul>
+<hr />
+<h2 id="uc-04-visualizar-historico-de-sessoes">UC-04 — Visualizar Histórico de Sessões<a class="headerlink" href="#uc-04-visualizar-historico-de-sessoes" title="Permanent link">&para;</a></h2>
+<p><strong>Ator principal:</strong> Usuário Free ou Pro
+<strong>Pré-condição:</strong> Usuário possui ao menos uma sessão salva
+<strong>Pós-condição:</strong> Usuário visualiza detalhes da sessão</p>
+<h3 id="fluxo-principal_3">Fluxo Principal<a class="headerlink" href="#fluxo-principal_3" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Usuário acessa a seção de Histórico</li>
+<li>Sistema exibe lista de sessões ordenadas por data (mais recente primeiro)</li>
+<li>Cada item exibe: data, tipo (livre/roleplay), cenário e duração</li>
+<li>Usuário clica em uma sessão</li>
+<li>Sistema exibe o transcript completo da conversa</li>
+<li>Sistema exibe o resumo de erros da sessão</li>
+</ol>
+<h3 id="fluxos-alternativos_3">Fluxos Alternativos<a class="headerlink" href="#fluxos-alternativos_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>FA1 — Nenhuma sessão:</strong> Sistema exibe estado vazio com CTA para iniciar primeiro chat</li>
+<li><strong>FA2 — Usuário deleta sessão:</strong> Sistema solicita confirmação e remove permanentemente</li>
+</ul>
+<hr />
+<h2 id="uc-05-assinar-plano-pro">UC-05 — Assinar Plano Pro<a class="headerlink" href="#uc-05-assinar-plano-pro" title="Permanent link">&para;</a></h2>
+<p><strong>Ator principal:</strong> Usuário Free
+<strong>Pré-condição:</strong> Usuário autenticado no plano Free
+<strong>Pós-condição:</strong> Plano atualizado para Pro, acesso liberado</p>
+<h3 id="fluxo-principal_4">Fluxo Principal<a class="headerlink" href="#fluxo-principal_4" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Usuário clica em "Upgrade para Pro" (via CTA ou menu de conta)</li>
+<li>Sistema exibe página de planos com comparativo Free x Pro</li>
+<li>Usuário seleciona plano mensal ou anual</li>
+<li>Sistema redireciona para checkout do Stripe</li>
+<li>Usuário preenche dados de cartão e confirma</li>
+<li>Stripe processa pagamento e notifica o sistema via webhook</li>
+<li>Sistema atualiza o plano do usuário para Pro</li>
+<li>Sistema envia e-mail de confirmação</li>
+<li>Usuário é redirecionado para a tela principal com acesso Pro ativo</li>
+</ol>
+<h3 id="fluxos-alternativos_4">Fluxos Alternativos<a class="headerlink" href="#fluxos-alternativos_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>FA1 — Pagamento recusado:</strong> Stripe exibe erro no checkout; sistema não altera o plano</li>
+<li><strong>FA2 — Usuário abandona o checkout:</strong> Sistema mantém plano Free sem alterações</li>
+</ul>
+<hr />
+<h2 id="uc-06-recuperar-senha">UC-06 — Recuperar Senha<a class="headerlink" href="#uc-06-recuperar-senha" title="Permanent link">&para;</a></h2>
+<p><strong>Ator principal:</strong> Usuário com conta por e-mail
+<strong>Pré-condição:</strong> Usuário não consegue fazer login
+<strong>Pós-condição:</strong> Senha redefinida, usuário autenticado</p>
+<h3 id="fluxo-principal_5">Fluxo Principal<a class="headerlink" href="#fluxo-principal_5" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Usuário clica em "Esqueci minha senha" na tela de login</li>
+<li>Sistema exibe campo para informar e-mail</li>
+<li>Usuário informa o e-mail e confirma</li>
+<li>Sistema envia e-mail com link de redefinição (válido por 1 hora)</li>
+<li>Usuário clica no link e é redirecionado para tela de nova senha</li>
+<li>Usuário define nova senha e confirma</li>
+<li>Sistema atualiza a senha e redireciona para login</li>
+</ol>
+<h3 id="fluxos-alternativos_5">Fluxos Alternativos<a class="headerlink" href="#fluxos-alternativos_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>FA1 — E-mail não cadastrado:</strong> Sistema exibe mensagem genérica (sem revelar se existe ou não)</li>
+<li><strong>FA2 — Link expirado:</strong> Sistema exibe aviso e permite solicitar novo link</li>
+</ul>
 
 
 
