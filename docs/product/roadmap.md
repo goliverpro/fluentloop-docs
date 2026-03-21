@@ -12,7 +12,7 @@ Visão macro das entregas por fase. Detalhes de cada funcionalidade estão nos [
 - [x] Visão do produto
 - [x] Personas
 - [x] Estrutura de repositórios
-- [ ] Levantamento de requisitos
+- [x] Levantamento de requisitos
 - [ ] Arquitetura técnica
 - [ ] Wireframes
 

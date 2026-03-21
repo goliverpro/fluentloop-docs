@@ -1,15 +1,36 @@
 # 📝 Levantamento de Requisitos
 
-> **Status:** 🔄 Em andamento
+> **Versão:** 1.0.0 | **Data:** 2026-03-21 | **Status:** ✅ Concluído
 
-Esta seção documentará todos os requisitos funcionais, não-funcionais e critérios de aceitação do FluentLoop.
+---
 
-!!! note "Em construção"
-    Os documentos desta seção serão criados na próxima fase do projeto.
+## Documentos desta seção
 
-## O que virá aqui
+| Documento | Descrição | Status |
+|---|---|---|
+| [Requisitos Funcionais](functional.md) | RFs por módulo com priorização MoSCoW e critérios de aceitação | ✅ |
+| [Requisitos Não-Funcionais](non-functional.md) | Performance, segurança, usabilidade, LGPD | ✅ |
+| [Casos de Uso](use-cases.md) | Fluxos principais e alternativos por funcionalidade | ✅ |
 
-- **RF** — Requisitos Funcionais por módulo
-- **RNF** — Requisitos Não-Funcionais (performance, segurança, usabilidade)
-- **Casos de Uso** — Fluxos detalhados por funcionalidade
-- **Critérios de Aceitação** — Por história de usuário
+---
+
+## Resumo
+
+| Categoria | Total |
+|---|---|
+| Requisitos Funcionais (MVP) | 35 |
+| Requisitos Funcionais (Pós-MVP) | 3 |
+| Requisitos Não-Funcionais | 27 |
+| Casos de Uso documentados | 6 |
+
+---
+
+## Módulos cobertos
+
+- Autenticação e Conta
+- Conversação por Texto
+- Correção de Erros
+- Roleplay e Cenários
+- Histórico de Sessões
+- Planos e Limites (Free vs Pro)
+- Voz *(pós-MVP)*
