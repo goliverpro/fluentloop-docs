@@ -1003,7 +1003,7 @@
 
 <h1 id="requisitos-funcionais">Requisitos Funcionais<a class="headerlink" href="#requisitos-funcionais" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p><strong>Versão:</strong> 1.0.0 | <strong>Data:</strong> 2026-03-21 | <strong>Status:</strong> ✅ Aprovado</p>
+<p><strong>Versão:</strong> 1.1.0 | <strong>Data:</strong> 2026-03-21 | <strong>Status:</strong> ✅ Aprovado</p>
 </blockquote>
 <p>Requisitos organizados por módulo, usando a classificação <strong>MoSCoW</strong>:</p>
 <ul>
@@ -1293,7 +1293,7 @@
 </tbody>
 </table>
 <hr />
-<h2 id="modulo-7-voz-pos-mvp">Módulo 7 — Voz <em>(Pós-MVP)</em><a class="headerlink" href="#modulo-7-voz-pos-mvp" title="Permanent link">&para;</a></h2>
+<h2 id="modulo-7-nivelamento-e-progressao">Módulo 7 — Nivelamento e Progressão<a class="headerlink" href="#modulo-7-nivelamento-e-progressao" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1304,17 +1304,97 @@
 </thead>
 <tbody>
 <tr>
-<td>RF-36</td>
+<td>RF-39</td>
+<td>O sistema deve coletar o nível de inglês do usuário no onboarding (A2 / B1 / B2)</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-40</td>
+<td>A IA deve adaptar o vocabulário, complexidade gramatical e ritmo da conversa ao nível do usuário</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-41</td>
+<td>O sistema deve monitorar a taxa de erros por sessão para inferir a evolução do usuário</td>
+<td>M</td>
+</tr>
+<tr>
+<td>RF-42</td>
+<td>O sistema deve sugerir avanço de nível quando o usuário demonstrar consistência por ao menos 5 sessões com taxa de erro abaixo de 20%</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-43</td>
+<td>O usuário deve poder aceitar ou recusar a sugestão de avanço de nível</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-44</td>
+<td>O usuário deve poder ajustar manualmente seu nível nas configurações de perfil</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-45</td>
+<td>O sistema deve registrar o histórico de evolução de nível do usuário</td>
+<td>S</td>
+</tr>
+<tr>
+<td>RF-46</td>
+<td>Os cenários de roleplay devem ter variantes de dificuldade ajustadas ao nível do usuário</td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Níveis suportados:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Nível</th>
+<th>Descrição</th>
+<th>Comportamento da IA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A2</strong></td>
+<td>Iniciante-intermediário</td>
+<td>Frases curtas, vocabulário básico, ritmo lento, mais tolerância a erros</td>
+</tr>
+<tr>
+<td><strong>B1</strong></td>
+<td>Intermediário</td>
+<td>Frases completas, vocabulário cotidiano, correção ativa</td>
+</tr>
+<tr>
+<td><strong>B2</strong></td>
+<td>Intermediário-avançado</td>
+<td>Expressões idiomáticas, ritmo natural, correção rigorosa</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="modulo-8-voz-pos-mvp">Módulo 8 — Voz <em>(Pós-MVP)</em><a class="headerlink" href="#modulo-8-voz-pos-mvp" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requisito</th>
+<th>Prioridade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF-47</td>
 <td>O sistema deve aceitar entrada de voz (speech-to-text)</td>
 <td>W</td>
 </tr>
 <tr>
-<td>RF-37</td>
+<td>RF-48</td>
 <td>O sistema deve gerar resposta em áudio (text-to-speech)</td>
 <td>W</td>
 </tr>
 <tr>
-<td>RF-38</td>
+<td>RF-49</td>
 <td>O sistema deve fornecer feedback de pronúncia</td>
 <td>W</td>
 </tr>
