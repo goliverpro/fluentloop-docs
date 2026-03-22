@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://goliverpro.github.io/fluentloop-docs/dev/conventions/">
+        <link rel="canonical" href="https://goliverpro.github.io/fluentloop-docs/architecture/data-model/">
       
       
-        <link rel="prev" href="../../design/wireframes/">
+        <link rel="prev" href="../overview/">
       
       
-        <link rel="next" href="../workflow/">
+        <link rel="next" href="../repositories/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Convenções - FluentLoop Docs</title>
+        <title>Modelo de Dados - FluentLoop Docs</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#convencoes" class="md-skip">
+        <a href="#modelo-de-dados" class="md-skip">
           Ir para o conteúdo
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Convenções
+              Modelo de Dados
             
           </span>
         </div>
@@ -282,11 +282,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../architecture/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -322,13 +324,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../dev/conventions/" class="md-tabs__link">
           
   
   
@@ -800,26 +800,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -837,7 +842,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -855,7 +860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -883,7 +888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   
@@ -908,10 +913,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../architecture/data-model/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo de Dados
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -927,6 +959,164 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#diagrama-er" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagrama ER
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabelas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabelas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tabelas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        subscriptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        messages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corrections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        corrections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pronunciation_words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pronunciation_words
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user_levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        user_levels
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regras-de-negocio-no-banco" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regras de Negócio no Banco
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Índices
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -939,7 +1129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/repositories/" class="md-nav__link">
+      <a href="../repositories/" class="md-nav__link">
         
   
   
@@ -995,7 +1185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/adrs/" class="md-nav__link">
+      <a href="../adrs/" class="md-nav__link">
         
   
   
@@ -1170,31 +1360,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   
@@ -1212,7 +1397,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1227,19 +1412,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../dev/conventions/" class="md-nav__link">
         
   
   
@@ -1255,7 +1431,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1268,7 +1443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workflow/" class="md-nav__link">
+      <a href="../../dev/workflow/" class="md-nav__link">
         
   
   
@@ -1571,7 +1746,7 @@
 
 
   
-    <a href="https://github.com/goliverpro/fluentloop-docs/edit/main/docs/dev/conventions.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/goliverpro/fluentloop-docs/edit/main/docs/architecture/data-model.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1579,15 +1754,716 @@
   
 
 
-<h1 id="convencoes">Convenções<a class="headerlink" href="#convencoes" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Em construção</p>
-<p>Este documento será preenchido em uma próxima fase.</p>
-<p><strong>O que virá aqui:</strong>
-- Padrão de nomenclatura de branches
-- Padrão de commits (Conventional Commits)
-- Estrutura de pastas por repositório</p>
-</div>
+<h1 id="modelo-de-dados">Modelo de Dados<a class="headerlink" href="#modelo-de-dados" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Versão:</strong> 1.0.0 | <strong>Data:</strong> 2026-03-21 | <strong>Status:</strong> ✅ Aprovado</p>
+</blockquote>
+<p>Banco de dados: <strong>PostgreSQL via Supabase</strong>.
+A autenticação é gerenciada pelo Supabase Auth — a tabela <code>users</code> é um perfil que estende <code>auth.users</code>.</p>
+<hr />
+<h2 id="diagrama-er">Diagrama ER<a class="headerlink" href="#diagrama-er" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>erDiagram
+    users {
+        uuid id PK
+        text email
+        text name
+        text avatar_url
+        enum level
+        enum plan
+        int daily_interactions_used
+        timestamp daily_reset_at
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    subscriptions {
+        uuid id PK
+        uuid user_id FK
+        text stripe_customer_id
+        text stripe_subscription_id
+        enum plan_type
+        enum status
+        timestamp current_period_start
+        timestamp current_period_end
+        timestamp created_at
+    }
+
+    scenarios {
+        uuid id PK
+        text name
+        text description
+        text ai_role
+        enum category
+        enum difficulty
+        boolean is_free
+        boolean is_active
+        timestamp created_at
+    }
+
+    sessions {
+        uuid id PK
+        uuid user_id FK
+        uuid scenario_id FK
+        enum type
+        enum pillar
+        timestamp started_at
+        timestamp ended_at
+        int total_messages
+        decimal error_rate
+        timestamp created_at
+    }
+
+    messages {
+        uuid id PK
+        uuid session_id FK
+        enum role
+        text content
+        text audio_url
+        timestamp created_at
+    }
+
+    corrections {
+        uuid id PK
+        uuid message_id FK
+        text original_text
+        text corrected_text
+        enum error_type
+        text explanation
+        timestamp created_at
+    }
+
+    pronunciation_words {
+        uuid id PK
+        uuid message_id FK
+        text word
+        int position
+        decimal accuracy_score
+        text phoneme_feedback
+        timestamp created_at
+    }
+
+    user_levels {
+        uuid id PK
+        uuid user_id FK
+        enum from_level
+        enum to_level
+        enum reason
+        timestamp changed_at
+    }
+
+    users ||--o{ subscriptions : "tem"
+    users ||--o{ sessions : "realiza"
+    users ||--o{ user_levels : "evolui"
+    scenarios ||--o{ sessions : "usada em"
+    sessions ||--o{ messages : "contém"
+    messages ||--o{ corrections : "recebe"
+    messages ||--o{ pronunciation_words : "avaliada em"</code></pre>
+<hr />
+<h2 id="tabelas">Tabelas<a class="headerlink" href="#tabelas" title="Permanent link">&para;</a></h2>
+<h3 id="users"><code>users</code><a class="headerlink" href="#users" title="Permanent link">&para;</a></h3>
+<p>Perfil do usuário. Estende <code>auth.users</code> do Supabase.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>uuid</code></td>
+<td>✅</td>
+<td>FK para <code>auth.users.id</code></td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>text</code></td>
+<td>✅</td>
+<td>E-mail do usuário</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>text</code></td>
+<td>✅</td>
+<td>Nome de exibição</td>
+</tr>
+<tr>
+<td><code>avatar_url</code></td>
+<td><code>text</code></td>
+<td>—</td>
+<td>URL da foto de perfil</td>
+</tr>
+<tr>
+<td><code>level</code></td>
+<td><code>enum(A2, B1, B2)</code></td>
+<td>✅</td>
+<td>Nível atual de inglês</td>
+</tr>
+<tr>
+<td><code>plan</code></td>
+<td><code>enum(free, pro)</code></td>
+<td>✅</td>
+<td>Plano atual, default <code>free</code></td>
+</tr>
+<tr>
+<td><code>daily_interactions_used</code></td>
+<td><code>int</code></td>
+<td>✅</td>
+<td>Interações usadas hoje, default <code>0</code></td>
+</tr>
+<tr>
+<td><code>daily_reset_at</code></td>
+<td><code>timestamp</code></td>
+<td>✅</td>
+<td>Quando o contador foi zerado pela última vez</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>timestamp</code></td>
+<td>✅</td>
+<td>Data de cadastro</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>timestamp</code></td>
+<td>✅</td>
+<td>Última atualização do perfil</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="subscriptions"><code>subscriptions</code><a class="headerlink" href="#subscriptions" title="Permanent link">&para;</a></h3>
+<p>Assinatura Pro via Stripe. Um usuário pode ter no máximo uma assinatura ativa.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>uuid</code></td>
+<td>✅</td>
+<td>PK</td>
+</tr>
+<tr>
+<td><code>user_id</code></td>
+<td><code>uuid</code></td>
+<td>✅</td>
+<td>FK → <code>users.id</code></td>
+</tr>
+<tr>
+<td><code>stripe_customer_id</code></td>
+<td><code>text</code></td>
+<td>✅</td>
+<td>ID do cliente no Stripe</td>
+</tr>
+<tr>
+<td><code>stripe_subscription_id</code></td>
+<td><code>text</code></td>
+<td>✅</td>
+<td>ID da assinatura no Stripe</td>
+</tr>
+<tr>
+<td><code>plan_type</code></td>
+<td><code>enum(monthly, annual)</code></td>
+<td>✅</td>
+<td>Tipo do plano</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>enum(active, canceled, past_due, trialing)</code></td>
+<td>✅</td>
+<td>Status atual</td>
+</tr>
+<tr>
+<td><code>current_period_start</code></td>
+<td><code>timestamp</code></td>
+<td>✅</td>
+<td>Início do período atual</td>
+</tr>
+<tr>
+<td><code>current_period_end</code></td>
+<td><code>timestamp</code></td>
+<td>✅</td>
+<td>Fim do período atual (data de renovação)</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>timestamp</code></td>
+<td>✅</td>
+<td>Data da primeira assinatura</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="scenarios"><code>scenarios</code><a class="headerlink" href="#scenarios" title="Permanent link">&para;</a></h3>
+<p>Cenários de roleplay disponíveis na plataforma.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>uuid</code></td>
+<td>✅</td>
+<td>PK</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>text</code></td>
+<td>✅</td>
+<td>Nome do cenário (ex: "Check-in em hotel")</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>text</code></td>
+<td>✅</td>
+<td>Descrição exibida ao usuário</td>
+</tr>
+<tr>
+<td><code>ai_role</code></td>
+<td><code>text</code></td>
+<td>✅</td>
+<td>Papel que a IA assume (ex: "Hotel receptionist")</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td><code>enum(work, travel, daily)</code></td>
+<td>✅</td>
+<td>Categoria do cenário</td>
+</tr>
+<tr>
+<td><code>difficulty</code></td>
+<td><code>enum(A2, B1, B2)</code></td>
+<td>✅</td>
+<td>Nível de dificuldade</td>
+</tr>
+<tr>
+<td><code>is_free</code></td>
+<td><code>boolean</code></td>
+<td>✅</td>
+<td>Disponível no plano Free, default <code>false</code></td>
+</tr>
+<tr>
+<td><code>is_active</code></td>
+<td><code>boolean</code></td>
+<td>✅</td>
+<td>Visível para os usuários, default <code>true</code></td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>timestamp</code></td>
+<td>✅</td>
+<td>Data de criação</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dados iniciais (seed):</strong></p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>category</th>
+<th>difficulty</th>
+<th>is_free</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Check-in em hotel</td>
+<td>travel</td>
+<td>B1</td>
+<td>true</td>
+</tr>
+<tr>
+<td>Daily standup em inglês</td>
+<td>work</td>
+<td>B1</td>
+<td>true</td>
+</tr>
+<tr>
+<td>Small talk casual</td>
+<td>daily</td>
+<td>A2</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="sessions"><code>sessions</code><a class="headerlink" href="#sessions" title="Permanent link">&para;</a></h3>
+<p>Cada sessão de conversa iniciada pelo usuário.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>uuid</code></td>
+<td>✅</td>
+<td>PK</td>
+</tr>
+<tr>
+<td><code>user_id</code></td>
+<td><code>uuid</code></td>
+<td>✅</td>
+<td>FK → <code>users.id</code></td>
+</tr>
+<tr>
+<td><code>scenario_id</code></td>
+<td><code>uuid</code></td>
+<td>—</td>
+<td>FK → <code>scenarios.id</code> (null se conversa livre)</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>enum(free_chat, roleplay)</code></td>
+<td>✅</td>
+<td>Tipo de sessão</td>
+</tr>
+<tr>
+<td><code>pillar</code></td>
+<td><code>enum(writing, speaking, comprehension)</code></td>
+<td>✅</td>
+<td>Pilar praticado na sessão</td>
+</tr>
+<tr>
+<td><code>started_at</code></td>
+<td><code>timestamp</code></td>
+<td>✅</td>
+<td>Início da sessão</td>
+</tr>
+<tr>
+<td><code>ended_at</code></td>
+<td><code>timestamp</code></td>
+<td>—</td>
+<td>Fim da sessão (null se em andamento)</td>
+</tr>
+<tr>
+<td><code>total_messages</code></td>
+<td><code>int</code></td>
+<td>✅</td>
+<td>Total de mensagens do usuário, default <code>0</code></td>
+</tr>
+<tr>
+<td><code>error_rate</code></td>
+<td><code>decimal(5,2)</code></td>
+<td>—</td>
+<td>% de mensagens com erros (calculado ao encerrar)</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>timestamp</code></td>
+<td>✅</td>
+<td>Data de criação</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="messages"><code>messages</code><a class="headerlink" href="#messages" title="Permanent link">&para;</a></h3>
+<p>Mensagens individuais de uma sessão (usuário e IA).</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>uuid</code></td>
+<td>✅</td>
+<td>PK</td>
+</tr>
+<tr>
+<td><code>session_id</code></td>
+<td><code>uuid</code></td>
+<td>✅</td>
+<td>FK → <code>sessions.id</code></td>
+</tr>
+<tr>
+<td><code>role</code></td>
+<td><code>enum(user, assistant)</code></td>
+<td>✅</td>
+<td>Quem enviou a mensagem</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td><code>text</code></td>
+<td>✅</td>
+<td>Conteúdo em texto (transcrição se for voz)</td>
+</tr>
+<tr>
+<td><code>audio_url</code></td>
+<td><code>text</code></td>
+<td>—</td>
+<td>URL no Supabase Storage (voz do usuário ou TTS da IA)</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>timestamp</code></td>
+<td>✅</td>
+<td>Data/hora da mensagem</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="corrections"><code>corrections</code><a class="headerlink" href="#corrections" title="Permanent link">&para;</a></h3>
+<p>Correções gramaticais e de vocabulário geradas pela IA para mensagens do usuário.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>uuid</code></td>
+<td>✅</td>
+<td>PK</td>
+</tr>
+<tr>
+<td><code>message_id</code></td>
+<td><code>uuid</code></td>
+<td>✅</td>
+<td>FK → <code>messages.id</code></td>
+</tr>
+<tr>
+<td><code>original_text</code></td>
+<td><code>text</code></td>
+<td>✅</td>
+<td>Trecho original com erro</td>
+</tr>
+<tr>
+<td><code>corrected_text</code></td>
+<td><code>text</code></td>
+<td>✅</td>
+<td>Versão correta sugerida</td>
+</tr>
+<tr>
+<td><code>error_type</code></td>
+<td><code>enum(grammar, vocabulary, pronunciation)</code></td>
+<td>✅</td>
+<td>Tipo do erro</td>
+</tr>
+<tr>
+<td><code>explanation</code></td>
+<td><code>text</code></td>
+<td>✅</td>
+<td>Explicação didática do erro</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>timestamp</code></td>
+<td>✅</td>
+<td>Data de criação</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="pronunciation_words"><code>pronunciation_words</code><a class="headerlink" href="#pronunciation_words" title="Permanent link">&para;</a></h3>
+<p>Score de pronúncia por palavra, retornado pelo Azure Speech.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>uuid</code></td>
+<td>✅</td>
+<td>PK</td>
+</tr>
+<tr>
+<td><code>message_id</code></td>
+<td><code>uuid</code></td>
+<td>✅</td>
+<td>FK → <code>messages.id</code> (mensagem de voz do usuário)</td>
+</tr>
+<tr>
+<td><code>word</code></td>
+<td><code>text</code></td>
+<td>✅</td>
+<td>Palavra avaliada</td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td><code>int</code></td>
+<td>✅</td>
+<td>Posição na frase (ordem)</td>
+</tr>
+<tr>
+<td><code>accuracy_score</code></td>
+<td><code>decimal(5,2)</code></td>
+<td>✅</td>
+<td>Score de 0 a 100</td>
+</tr>
+<tr>
+<td><code>phoneme_feedback</code></td>
+<td><code>text</code></td>
+<td>—</td>
+<td>Feedback fonético quando score &lt; 70</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>timestamp</code></td>
+<td>✅</td>
+<td>Data de criação</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="user_levels"><code>user_levels</code><a class="headerlink" href="#user_levels" title="Permanent link">&para;</a></h3>
+<p>Histórico de evolução de nível do usuário.</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>uuid</code></td>
+<td>✅</td>
+<td>PK</td>
+</tr>
+<tr>
+<td><code>user_id</code></td>
+<td><code>uuid</code></td>
+<td>✅</td>
+<td>FK → <code>users.id</code></td>
+</tr>
+<tr>
+<td><code>from_level</code></td>
+<td><code>enum(A2, B1, B2)</code></td>
+<td>✅</td>
+<td>Nível anterior</td>
+</tr>
+<tr>
+<td><code>to_level</code></td>
+<td><code>enum(A2, B1, B2)</code></td>
+<td>✅</td>
+<td>Novo nível</td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td><code>enum(auto, manual)</code></td>
+<td>✅</td>
+<td>Origem da mudança</td>
+</tr>
+<tr>
+<td><code>changed_at</code></td>
+<td><code>timestamp</code></td>
+<td>✅</td>
+<td>Data da mudança</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="regras-de-negocio-no-banco">Regras de Negócio no Banco<a class="headerlink" href="#regras-de-negocio-no-banco" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Regra</th>
+<th>Implementação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Limite diário Free (10 interações)</td>
+<td><code>daily_interactions_used</code> + <code>daily_reset_at</code> em <code>users</code>; checado no backend a cada requisição</td>
+</tr>
+<tr>
+<td>Reset diário do contador</td>
+<td>Backend verifica se <code>daily_reset_at</code> &lt; hoje e zera <code>daily_interactions_used</code></td>
+</tr>
+<tr>
+<td>Plano do usuário</td>
+<td>Campo <code>plan</code> em <code>users</code> atualizado via webhook do Stripe</td>
+</tr>
+<tr>
+<td>Histórico de nível</td>
+<td>Toda mudança em <code>users.level</code> gera um registro em <code>user_levels</code> via trigger</td>
+</tr>
+<tr>
+<td>error_rate da sessão</td>
+<td>Calculado e salvo em <code>sessions.error_rate</code> ao encerrar a sessão</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="indices">Índices<a class="headerlink" href="#indices" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tabela</th>
+<th>Coluna(s)</th>
+<th>Motivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sessions</code></td>
+<td><code>user_id, started_at DESC</code></td>
+<td>Listar histórico do usuário ordenado por data</td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>session_id, created_at ASC</code></td>
+<td>Carregar conversa em ordem cronológica</td>
+</tr>
+<tr>
+<td><code>corrections</code></td>
+<td><code>message_id</code></td>
+<td>Buscar correções de uma mensagem</td>
+</tr>
+<tr>
+<td><code>pronunciation_words</code></td>
+<td><code>message_id, position ASC</code></td>
+<td>Buscar palavras de uma mensagem em ordem</td>
+</tr>
+<tr>
+<td><code>user_levels</code></td>
+<td><code>user_id, changed_at DESC</code></td>
+<td>Histórico de evolução do usuário</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -1623,7 +2499,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
         
           
-          <a href="../../design/wireframes/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Wireframes">
+          <a href="../overview/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Overview Técnico">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1633,20 +2509,20 @@
                 Anterior
               </span>
               <div class="md-ellipsis">
-                Wireframes
+                Overview Técnico
               </div>
             </div>
           </a>
         
         
           
-          <a href="../workflow/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Workflow">
+          <a href="../repositories/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Repositórios">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Próximo
               </span>
               <div class="md-ellipsis">
-                Workflow
+                Repositórios
               </div>
             </div>
             <div class="md-footer__button md-icon">
