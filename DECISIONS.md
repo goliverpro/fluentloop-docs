@@ -137,10 +137,17 @@ Ao iniciar uma nova sessão com a IA, compartilhe este arquivo e diga:
 | Requisitos funcionais | `docs/requirements/functional.md` | ✅ Concluído |
 | Requisitos não-funcionais | `docs/requirements/non-functional.md` | ✅ Concluído |
 | Casos de uso | `docs/requirements/use-cases.md` | ✅ Concluído |
-| Arquitetura técnica | `docs/architecture/` | 🔄 Em andamento |
-| Design e wireframes | `docs/design/` | ⏳ Pendente |
-| Testes | `docs/testing/` | ⏳ Pendente |
-| Deploy | `docs/deployment/` | ⏳ Pendente |
+| Arquitetura — Overview | `docs/architecture/overview.md` | ✅ Concluído |
+| Arquitetura — SDD + Diagramas de sequência | `docs/architecture/sdd.md` | ✅ Concluído |
+| Arquitetura — Modelo de dados | `docs/architecture/data-model.md` | ✅ Concluído |
+| Arquitetura — Rate limit, cache e segurança | `docs/architecture/rate-limit-cache-security.md` | ✅ Concluído |
+| Arquitetura — Repositórios | `docs/architecture/repositories.md` | ✅ Concluído |
+| Arquitetura — ADRs | `docs/architecture/adrs.md` | ✅ Concluído |
+| Design — Wireframes (14 telas) | `docs/design/wireframes.md` | ✅ Concluído |
+| Design — Style guide | `docs/design/style-guide.md` | ✅ Concluído |
+| Desenvolvimento — Convenções e workflow | `docs/development/` | ⏳ Pendente |
+| Testes — Estratégia e CI/CD | `docs/testing/` | ⏳ Pendente |
+| Deploy — Ambientes e CI/CD | `docs/deployment/` | ⏳ Pendente |
 
 ---
 
@@ -154,6 +161,15 @@ Ao iniciar uma nova sessão com a IA, compartilhe este arquivo e diga:
 
 ## Próximos Passos
 
-1. **Arquitetura Técnica** — diagrama de componentes, fluxo de dados, modelo de dados
-2. **Design / Wireframes** — fluxos de tela e protótipo
-3. **Criação dos repositórios** de código (`fluentloop-core` e `fluentloop-web`)
+**Fase 0 concluída.** Toda a documentação de produto, requisitos, arquitetura e design está aprovada.
+
+A próxima etapa é a **implementação da Fase 1 (MVP)**. A ordem sugerida:
+
+1. **Backend (`fluentloop-core`)** — estrutura base: config, middleware de auth, primeiro router
+2. **Supabase** — criar tabelas e configurar RLS
+3. **Frontend (`fluentloop-web`)** — estrutura base: layout, rotas, cliente de API
+4. **Integração ponta a ponta** — um fluxo completo funcionando (ex: login → chat → resposta streaming)
+
+**Repositórios criados e prontos:**
+- Backend: `C:\Users\gabri\Documents\IA\fluentloop-core`
+- Frontend: `C:\Users\gabri\Documents\IA\fluentloop-web`
