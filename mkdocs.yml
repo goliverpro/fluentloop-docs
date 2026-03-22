@@ -53,6 +53,7 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Produto:
+    - Visão Geral: product/index.md
     - Visão do Produto: product/vision.md
     - Personas: product/personas.md
     - Roadmap: product/roadmap.md
@@ -66,7 +67,7 @@ nav:
     - Overview Técnico: architecture/overview.md
     - Repositórios: architecture/repositories.md
     - ADRs: adr/index.md
-    - ADRs (lista): adr/adrs.md
+    - ADRs (lista): architecture/adrs.md
   - Design:
     - Visão Geral: design/index.md
     - Style Guide: design/style-guide.md
