@@ -920,10 +920,21 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#o-que-vira-aqui" class="md-nav__link">
+  <a href="#documentos-desta-secao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O que virá aqui
+        Documentos desta seção
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stack-resumida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack resumida
       
     </span>
   </a>
@@ -1601,21 +1612,76 @@
 
 <h1 id="arquitetura-tecnica">🏗️ Arquitetura Técnica<a class="headerlink" href="#arquitetura-tecnica" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p><strong>Status:</strong> ⏳ Pendente</p>
+<p><strong>Versão:</strong> 1.0.0 | <strong>Data:</strong> 2026-03-21 | <strong>Status:</strong> 🔄 Em andamento</p>
 </blockquote>
-<p>Esta seção documentará as decisões de arquitetura do FluentLoop.</p>
-<div class="admonition note">
-<p class="admonition-title">Em construção</p>
-<p>Os documentos desta seção serão criados após o levantamento de requisitos.</p>
-</div>
-<h2 id="o-que-vira-aqui">O que virá aqui<a class="headerlink" href="#o-que-vira-aqui" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Diagrama de arquitetura geral</li>
-<li>Stack tecnológica e justificativas</li>
-<li>Modelo de dados</li>
-<li>Integrações externas (APIs de IA, autenticação, etc.)</li>
-<li>ADRs — Architecture Decision Records</li>
-</ul>
+<hr />
+<h2 id="documentos-desta-secao">Documentos desta seção<a class="headerlink" href="#documentos-desta-secao" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Documento</th>
+<th>Descrição</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="overview/">Overview Técnico</a></td>
+<td>Stack, diagrama de componentes e fluxos de dados</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="repositories/">Repositórios</a></td>
+<td>Estrutura dos repositórios do projeto</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="../adr/">ADRs</a></td>
+<td>Architecture Decision Records</td>
+<td>🔄 Em andamento</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="stack-resumida">Stack resumida<a class="headerlink" href="#stack-resumida" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Camada</th>
+<th>Tecnologia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frontend</td>
+<td>Next.js (React) — Vercel</td>
+</tr>
+<tr>
+<td>Backend</td>
+<td>Python + FastAPI — Railway</td>
+</tr>
+<tr>
+<td>Banco de dados + Auth + Storage</td>
+<td>Supabase (PostgreSQL)</td>
+</tr>
+<tr>
+<td>LLM</td>
+<td>Claude — Anthropic API</td>
+</tr>
+<tr>
+<td>STT + Pronúncia</td>
+<td>Azure Speech</td>
+</tr>
+<tr>
+<td>TTS</td>
+<td>OpenAI TTS</td>
+</tr>
+<tr>
+<td>Pagamentos</td>
+<td>Stripe</td>
+</tr>
+</tbody>
+</table>
 
 
 

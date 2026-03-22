@@ -897,6 +897,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview Técnico
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -913,6 +931,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stack-tecnologica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack Tecnológica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagrama-de-componentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagrama de Componentes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-dados-conversa-por-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fluxo de Dados — Conversa por Texto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-dados-conversa-por-voz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fluxo de Dados — Conversa por Voz
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-dados-resposta-em-audio-tts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fluxo de Dados — Resposta em Áudio (TTS)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#separacao-de-responsabilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separação de Responsabilidades
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decisoes-de-arquitetura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisões de Arquitetura
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1552,14 +1666,228 @@
 
 
 <h1 id="visao-geral-da-arquitetura">Visão Geral da Arquitetura<a class="headerlink" href="#visao-geral-da-arquitetura" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Em construção</p>
-<p>Este documento será preenchido em uma próxima fase.</p>
-<p><strong>O que virá aqui:</strong>
-- Diagrama de componentes
-- Fluxo de dados entre serviços
-- Stack tecnológica definida</p>
-</div>
+<blockquote>
+<p><strong>Versão:</strong> 1.0.0 | <strong>Data:</strong> 2026-03-21 | <strong>Status:</strong> ✅ Aprovado</p>
+</blockquote>
+<hr />
+<h2 id="stack-tecnologica">Stack Tecnológica<a class="headerlink" href="#stack-tecnologica" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Camada</th>
+<th>Tecnologia</th>
+<th>Justificativa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frontend</td>
+<td>Next.js (React)</td>
+<td>Web app + PWA + landing page num único projeto, SEO nativo</td>
+</tr>
+<tr>
+<td>Backend</td>
+<td>Python + FastAPI</td>
+<td>I/O bound, ecossistema AI nativo, asyncio para alto throughput</td>
+</tr>
+<tr>
+<td>Banco de dados</td>
+<td>Supabase (PostgreSQL)</td>
+<td>DB + Auth + Storage no free tier, sem overhead de infra</td>
+</tr>
+<tr>
+<td>Auth</td>
+<td>Supabase Auth</td>
+<td>E-mail/senha e Google OAuth inclusos</td>
+</tr>
+<tr>
+<td>LLM</td>
+<td>Claude — Anthropic API</td>
+<td>Melhor para instrução nuançada, contexto longo, adaptação de nível</td>
+</tr>
+<tr>
+<td>STT + Pronúncia</td>
+<td>Azure Speech</td>
+<td>Único com pronunciation assessment nativo por palavra e fonema</td>
+</tr>
+<tr>
+<td>TTS</td>
+<td>OpenAI TTS</td>
+<td>Voz neural, custo baixo, fácil integração</td>
+</tr>
+<tr>
+<td>Pagamentos</td>
+<td>Stripe</td>
+<td>Padrão de mercado para assinaturas recorrentes</td>
+</tr>
+<tr>
+<td>Deploy Frontend</td>
+<td>Vercel</td>
+<td>Integração nativa com Next.js, free tier generoso</td>
+</tr>
+<tr>
+<td>Deploy Backend</td>
+<td>Railway</td>
+<td>Free tier para MVP, suporte a containers FastAPI</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="diagrama-de-componentes">Diagrama de Componentes<a class="headerlink" href="#diagrama-de-componentes" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────┐
+│                      USUÁRIO                            │
+│              Browser / PWA (mobile)                     │
+└────────────────────────┬────────────────────────────────┘
+                         │ HTTPS
+┌────────────────────────▼────────────────────────────────┐
+│                   FRONTEND                              │
+│              Next.js — Vercel                           │
+│                                                         │
+│  ┌─────────────┐  ┌──────────────┐  ┌───────────────┐  │
+│  │  Chat UI    │  │  Roleplay UI │  │  Histórico UI │  │
+│  └─────────────┘  └──────────────┘  └───────────────┘  │
+└────────────────────────┬────────────────────────────────┘
+                         │ REST / WebSocket
+┌────────────────────────▼────────────────────────────────┐
+│                   BACKEND                               │
+│            Python + FastAPI — Railway                   │
+│                                                         │
+│  ┌──────────────┐  ┌─────────────┐  ┌───────────────┐  │
+│  │ Chat Service │  │ STT Service │  │ TTS Service   │  │
+│  └──────┬───────┘  └──────┬──────┘  └───────┬───────┘  │
+│         │                 │                  │          │
+│  ┌──────▼───────┐  ┌──────▼──────┐  ┌───────▼───────┐  │
+│  │ LLM Service  │  │ Pronunciation│  │  Audio Store  │  │
+│  │  (Claude)   │  │  Assessment  │  │   (Supabase)  │  │
+│  └─────────────┘  └─────────────┘  └───────────────┘  │
+└──────┬──────────────────┬───────────────────┬──────────┘
+       │                  │                   │
+┌──────▼──────┐  ┌────────▼────────┐  ┌───────▼──────────┐
+│  Anthropic  │  │  Azure Speech   │  │   OpenAI TTS     │
+│     API     │  │  STT + Pronúncia│  │                  │
+└─────────────┘  └─────────────────┘  └──────────────────┘
+       │
+┌──────▼──────────────────────────────────────────────────┐
+│                    SUPABASE                             │
+│          PostgreSQL + Auth + Storage                    │
+│                                                         │
+│  ┌─────────────┐  ┌──────────────┐  ┌───────────────┐  │
+│  │   Users     │  │   Sessions   │  │  Audio Files  │  │
+│  │   Plans     │  │   Messages   │  │  (Storage)    │  │
+│  └─────────────┘  └──────────────┘  └───────────────┘  │
+└─────────────────────────────────────────────────────────┘
+       │
+┌──────▼──────┐
+│   Stripe    │
+│ Pagamentos  │
+└─────────────┘
+</code></pre></div>
+<hr />
+<h2 id="fluxo-de-dados-conversa-por-texto">Fluxo de Dados — Conversa por Texto<a class="headerlink" href="#fluxo-de-dados-conversa-por-texto" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>1. Usuário digita mensagem → Frontend
+2. Frontend → POST /chat/message → Backend
+3. Backend monta prompt com: histórico + nível + persona do cenário
+4. Backend → Anthropic API (Claude) → resposta + correções
+5. Backend salva mensagem + correções no Supabase
+6. Backend → Frontend (streaming da resposta)
+7. Frontend exibe resposta da IA + correção abaixo da mensagem do usuário
+</code></pre></div>
+<hr />
+<h2 id="fluxo-de-dados-conversa-por-voz">Fluxo de Dados — Conversa por Voz<a class="headerlink" href="#fluxo-de-dados-conversa-por-voz" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>1. Usuário fala → Frontend captura áudio via microfone (Web Audio API)
+2. Frontend → POST /speech/transcribe → Backend (áudio em chunks)
+3. Backend → Azure Speech (STT + Pronunciation Assessment)
+4. Azure retorna: transcrição + score por palavra + erros de pronúncia
+5. Backend → Frontend: exibe transcrição para o usuário confirmar
+6. Usuário confirma → Backend processa como mensagem de texto (fluxo acima)
+7. Erros de pronúncia são exibidos junto com a correção gramatical
+</code></pre></div>
+<hr />
+<h2 id="fluxo-de-dados-resposta-em-audio-tts">Fluxo de Dados — Resposta em Áudio (TTS)<a class="headerlink" href="#fluxo-de-dados-resposta-em-audio-tts" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>1. Backend recebe resposta da Claude (texto)
+2. Backend → OpenAI TTS API → áudio gerado
+3. Backend salva áudio temporariamente no Supabase Storage
+4. Backend → Frontend: URL assinada do áudio
+5. Frontend reproduz áudio com controles de velocidade (normal / lento)
+</code></pre></div>
+<hr />
+<h2 id="separacao-de-responsabilidades">Separação de Responsabilidades<a class="headerlink" href="#separacao-de-responsabilidades" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Camada</th>
+<th>Responsabilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frontend (Next.js)</td>
+<td>UI, captura de áudio, reprodução de áudio, autenticação via Supabase client</td>
+</tr>
+<tr>
+<td>Backend (FastAPI)</td>
+<td>Orquestração dos serviços de IA, rate limiting, lógica de negócio, persistência</td>
+</tr>
+<tr>
+<td>Supabase</td>
+<td>Persistência de dados, autenticação, storage de arquivos de áudio</td>
+</tr>
+<tr>
+<td>Claude</td>
+<td>Geração de resposta conversacional, correção de erros, adaptação de nível</td>
+</tr>
+<tr>
+<td>Azure Speech</td>
+<td>Transcrição de voz, avaliação de pronúncia</td>
+</tr>
+<tr>
+<td>OpenAI TTS</td>
+<td>Síntese de voz para respostas da IA</td>
+</tr>
+<tr>
+<td>Stripe</td>
+<td>Processamento de pagamentos, gestão de assinaturas via webhooks</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="decisoes-de-arquitetura">Decisões de Arquitetura<a class="headerlink" href="#decisoes-de-arquitetura" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Decisão</th>
+<th>Escolha</th>
+<th>Motivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Comunicação chat</td>
+<td>REST + Streaming (SSE)</td>
+<td>Simples, suportado nativamente pelo FastAPI e Next.js</td>
+</tr>
+<tr>
+<td>Comunicação áudio</td>
+<td>REST multipart</td>
+<td>Áudio é enviado como arquivo, não requer WebSocket</td>
+</tr>
+<tr>
+<td>Armazenamento de áudio TTS</td>
+<td>Supabase Storage (temporário)</td>
+<td>Evita reprocessar TTS para o mesmo conteúdo</td>
+</tr>
+<tr>
+<td>Rate limiting</td>
+<td>Backend (FastAPI middleware)</td>
+<td>Controle centralizado por usuário e plano</td>
+</tr>
+<tr>
+<td>Autenticação</td>
+<td>JWT via Supabase</td>
+<td>Frontend autentica direto no Supabase, backend valida o token</td>
+</tr>
+</tbody>
+</table>
 
 
 
