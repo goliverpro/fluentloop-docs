@@ -59,21 +59,27 @@ Ao iniciar uma nova sessão com a IA, compartilhe este arquivo e diga:
 
 ## Decisões Técnicas
 
-> *Ainda não definidas — próxima fase é Arquitetura Técnica.*
+### DT-01 — Backend Core: Python + FastAPI
+- **Status:** ✅ Decidido
+- **Decisão:** Python com FastAPI
+- **Alternativa considerada:** Java (Spring Boot)
+- **Motivo:** O backend do FluentLoop é 90% I/O bound — orquestra chamadas para LLM, STT e TTS. Nesse cenário, o asyncio do Python lida com alto throughput sem a vantagem de performance do Java ser relevante. O ecossistema Python para IA (SDKs, bibliotecas) é dominante e reduz atrito nas integrações.
+- **Sobre escalabilidade:** Python escala horizontalmente sem problema. O gargalo real serão os custos e rate limits das APIs de IA — não a linguagem. Se um componente específico exigir mais performance no futuro, pode ser extraído como microsserviço isolado (inclusive em Java).
+- **Decisões em aberto:** frontend/interface, banco de dados, provedor de STT, provedor de TTS, modelo de LLM
 
-### DT-01 — Stack
-- **Status:** Pendente
-- **Decisões em aberto:** frontend framework, backend language, banco de dados, provedor de STT, provedor de TTS, modelo de LLM
+### DT-02 — Interface: Web ou Mobile
+- **Status:** 🔄 Em discussão
+- **Decisões em aberto:** web app, app mobile nativo, ou PWA
 
-### DT-02 — Provedor de IA (LLM)
+### DT-03 — Provedor de IA (LLM)
 - **Status:** Pendente
 - **Contexto:** Precisa suportar conversas longas com contexto, correção de erros e adaptação de nível
 
-### DT-03 — Provedor de STT (Speech-to-Text)
+### DT-04 — Provedor de STT (Speech-to-Text)
 - **Status:** Pendente
 - **Requisito:** Acurácia ≥ 85% para inglês com sotaque brasileiro
 
-### DT-04 — Provedor de TTS (Text-to-Speech)
+### DT-05 — Provedor de TTS (Text-to-Speech)
 - **Status:** Pendente
 - **Requisito:** Voz neural (não robótica), latência ≤ 3s, suporte a velocidade variável
 
