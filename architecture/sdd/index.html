@@ -1,0 +1,2754 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação oficial do FluentLoop — AI-powered English conversation practice">
+      
+      
+      
+        <link rel="canonical" href="https://goliverpro.github.io/fluentloop-docs/architecture/sdd/">
+      
+      
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../data-model/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>SDD - FluentLoop Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#software-design-document-sdd" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="FluentLoop Docs" class="md-header__button md-logo" aria-label="FluentLoop Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FluentLoop Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SDD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/goliverpro/fluentloop-docs" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fluentloop-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Produto
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../requirements/" class="md-tabs__link">
+          
+  
+  
+  Requisitos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Arquitetura
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/" class="md-tabs__link">
+          
+  
+  
+  Design
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../dev/conventions/" class="md-tabs__link">
+          
+  
+  
+  Desenvolvimento
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../testing/" class="md-tabs__link">
+          
+  
+  
+  Testes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../deployment/" class="md-tabs__link">
+          
+  
+  
+  Deploy
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="FluentLoop Docs" class="md-nav__button md-logo" aria-label="FluentLoop Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    FluentLoop Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/goliverpro/fluentloop-docs" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    fluentloop-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Produto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Produto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão do Produto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/personas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Personas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requisitos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/functional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos Funcionais
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/non-functional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos Não-Funcionais
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requirements/use-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Casos de Uso
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Arquitetura
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview Técnico
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDD
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-diagramas-de-sequencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Diagramas de Sequência
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Diagramas de Sequência">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 — Autenticação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-conversa-por-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 — Conversa por Texto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-conversa-por-voz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 — Conversa por Voz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-upgrade-para-plano-pro-stripe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 — Upgrade para Plano Pro (Stripe)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-encerramento-de-sessao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 — Encerramento de Sessão
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-contratos-de-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Contratos de API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Contratos de API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usuários
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usuários">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-usersme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /users/me
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patch-usersme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PATCH /users/me
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patch-usersmelevel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PATCH /users/me/level
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sessoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sessões
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sessões">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-sessionsid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /sessions/{id}
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patch-sessionsidend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PATCH /sessions/{id}/end
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chat
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-chatmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /chat/message
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#voz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Voz
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Voz">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-speechtranscribe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /speech/transcribe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-speechtts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /speech/tts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cenários
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cenários">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pagamentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pagamentos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pagamentos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-billingcheckout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /billing/checkout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-billingwebhook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /billing/webhook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-billingsubscription" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /billing/subscription
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tratamento-de-erros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Tratamento de Erros
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Tratamento de Erros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#codigos-de-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Códigos de status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formato-padrao-de-erro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formato padrão de erro
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrategia-por-servico-externo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estratégia por serviço externo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ciclo-de-vida-da-sessao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Ciclo de Vida da Sessão
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Segurança
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo de Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repositories/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repositórios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADRs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adrs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADRs (lista)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/style-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Style Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/wireframes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wireframes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desenvolvimento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Desenvolvimento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Convenções
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Testes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estratégia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../testing/strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deploy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deploy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão Geral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/environments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ambientes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/cicd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/goliverpro/fluentloop-docs/edit/main/docs/architecture/sdd.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="software-design-document-sdd">Software Design Document (SDD)<a class="headerlink" href="#software-design-document-sdd" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Versão:</strong> 1.0.0 | <strong>Data:</strong> 2026-03-21 | <strong>Status:</strong> ✅ Aprovado</p>
+</blockquote>
+<hr />
+<h2 id="1-diagramas-de-sequencia">1. Diagramas de Sequência<a class="headerlink" href="#1-diagramas-de-sequencia" title="Permanent link">&para;</a></h2>
+<h3 id="11-autenticacao">1.1 — Autenticação<a class="headerlink" href="#11-autenticacao" title="Permanent link">&para;</a></h3>
+<p>Fluxo de login com e-mail/senha ou Google OAuth. A autenticação acontece diretamente entre o Frontend e o Supabase Auth — o Backend apenas valida o JWT nas requisições subsequentes.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    actor U as Usuário
+    participant FE as Frontend (Next.js)
+    participant SB as Supabase Auth
+    participant BE as Backend (FastAPI)
+
+    U-&gt;&gt;FE: Clica em "Entrar com Google" ou preenche e-mail/senha
+    FE-&gt;&gt;SB: supabase.auth.signInWithOAuth() ou signInWithPassword()
+    SB--&gt;&gt;FE: JWT (access_token + refresh_token)
+    FE-&gt;&gt;FE: Salva tokens em memória (não localStorage)
+
+    Note over FE,BE: Toda requisição subsequente inclui o JWT no header
+
+    FE-&gt;&gt;BE: GET /users/me (Authorization: Bearer &lt;JWT&gt;)
+    BE-&gt;&gt;SB: Valida JWT via Supabase Admin API
+    SB--&gt;&gt;BE: Payload do usuário (user_id, email)
+    BE-&gt;&gt;SB: SELECT * FROM users WHERE id = user_id
+    SB--&gt;&gt;BE: Perfil do usuário (nível, plano, contador diário)
+    BE--&gt;&gt;FE: UserProfile { id, name, level, plan, daily_interactions_used }
+    FE-&gt;&gt;U: Redireciona para tela principal</code></pre>
+<p><strong>Fluxo de erro — token expirado:</strong></p>
+<pre class="mermaid"><code>sequenceDiagram
+    actor U as Usuário
+    participant FE as Frontend (Next.js)
+    participant SB as Supabase Auth
+    participant BE as Backend (FastAPI)
+
+    FE-&gt;&gt;BE: POST /chat/message (JWT expirado)
+    BE--&gt;&gt;FE: 401 Unauthorized
+    FE-&gt;&gt;SB: supabase.auth.refreshSession()
+    SB--&gt;&gt;FE: Novo JWT
+    FE-&gt;&gt;BE: POST /chat/message (novo JWT)
+    BE--&gt;&gt;FE: 200 OK</code></pre>
+<hr />
+<h3 id="12-conversa-por-texto">1.2 — Conversa por Texto<a class="headerlink" href="#12-conversa-por-texto" title="Permanent link">&para;</a></h3>
+<p>A resposta da Claude é transmitida em <strong>streaming via SSE (Server-Sent Events)</strong> para o frontend exibir o texto conforme vai sendo gerado, sem esperar a resposta completa.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    actor U as Usuário
+    participant FE as Frontend (Next.js)
+    participant BE as Backend (FastAPI)
+    participant SB as Supabase
+    participant AI as Claude (Anthropic)
+
+    U-&gt;&gt;FE: Digita mensagem e envia
+    FE-&gt;&gt;BE: POST /chat/message { session_id, content }
+
+    BE-&gt;&gt;BE: Valida JWT
+    BE-&gt;&gt;SB: Verifica daily_interactions_used do usuário
+    SB--&gt;&gt;BE: { used: 7, plan: "free" }
+
+    alt Limite atingido (free &gt;= 10)
+        BE--&gt;&gt;FE: 429 { error: "daily_limit_reached", reset_at: "..." }
+        FE-&gt;&gt;U: Exibe modal de upgrade
+    else Dentro do limite
+        BE-&gt;&gt;SB: Busca histórico da sessão (últimas 10 mensagens)
+        SB--&gt;&gt;BE: messages[]
+
+        BE-&gt;&gt;SB: INSERT messages (role: "user", content)
+        BE-&gt;&gt;SB: INCREMENT daily_interactions_used
+
+        BE-&gt;&gt;AI: POST /messages (stream: true)&lt;br/&gt;system_prompt + histórico + mensagem do usuário
+        Note over BE,AI: Prompt inclui nível do usuário,&lt;br/&gt;persona do cenário e instrução de correção
+
+        AI--&gt;&gt;BE: Stream de tokens
+
+        loop Para cada chunk do stream
+            BE--&gt;&gt;FE: SSE event: { type: "token", content: "..." }
+            FE-&gt;&gt;U: Exibe texto progressivamente
+        end
+
+        BE-&gt;&gt;BE: Extrai correções do response completo
+        BE-&gt;&gt;SB: INSERT messages (role: "assistant", content)
+        BE-&gt;&gt;SB: INSERT corrections[] (se houver erros)
+        BE-&gt;&gt;SB: UPDATE sessions SET total_messages = total_messages + 1
+
+        BE--&gt;&gt;FE: SSE event: { type: "done", corrections: [...] }
+        FE-&gt;&gt;U: Exibe correções abaixo da mensagem do usuário
+    end</code></pre>
+<hr />
+<h3 id="13-conversa-por-voz">1.3 — Conversa por Voz<a class="headerlink" href="#13-conversa-por-voz" title="Permanent link">&para;</a></h3>
+<p>O fluxo de voz é o mais complexo — envolve 4 serviços externos em sequência. O usuário vê a transcrição antes de confirmar o envio, permitindo correção de erros de transcrição.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    actor U as Usuário
+    participant FE as Frontend (Next.js)
+    participant BE as Backend (FastAPI)
+    participant AZ as Azure Speech
+    participant AI as Claude (Anthropic)
+    participant OAI as OpenAI TTS
+    participant SB as Supabase Storage
+
+    U-&gt;&gt;FE: Pressiona botão e fala em inglês
+    FE-&gt;&gt;FE: Captura áudio via Web Audio API
+    U-&gt;&gt;FE: Solta o botão (fim da gravação)
+
+    FE-&gt;&gt;BE: POST /speech/transcribe (áudio multipart/form-data)
+    BE-&gt;&gt;AZ: Envia áudio para STT + Pronunciation Assessment
+    AZ--&gt;&gt;BE: { transcription, words: [{ word, accuracy_score, phoneme_feedback }] }
+
+    BE--&gt;&gt;FE: { transcription, pronunciation_words[] }
+    FE-&gt;&gt;U: Exibe transcrição + palavras com score baixo destacadas
+
+    alt Usuário edita a transcrição
+        U-&gt;&gt;FE: Corrige texto manualmente
+    end
+
+    U-&gt;&gt;FE: Confirma envio
+    FE-&gt;&gt;BE: POST /chat/message { session_id, content: transcription, is_voice: true }
+
+    BE-&gt;&gt;SB: Verifica limite diário
+    BE-&gt;&gt;SB: Busca histórico da sessão
+    BE-&gt;&gt;SB: INSERT messages (role: "user", content, audio_url)
+    BE-&gt;&gt;SB: INSERT pronunciation_words[]
+
+    BE-&gt;&gt;AI: POST /messages (stream: true)
+    AI--&gt;&gt;BE: Resposta em texto
+
+    BE-&gt;&gt;OAI: POST /audio/speech { input: response_text, voice: "alloy" }
+    OAI--&gt;&gt;BE: Áudio MP3
+
+    BE-&gt;&gt;SB: Upload do áudio MP3 → Storage
+    SB--&gt;&gt;BE: audio_url (signed URL)
+
+    BE-&gt;&gt;SB: INSERT messages (role: "assistant", content, audio_url)
+    BE-&gt;&gt;SB: INSERT corrections[] (se houver)
+
+    BE--&gt;&gt;FE: { content, audio_url, corrections[], pronunciation_words[] }
+
+    FE-&gt;&gt;U: Reproduz áudio da IA automaticamente
+    FE-&gt;&gt;U: Exibe texto da resposta
+    FE-&gt;&gt;U: Exibe correções de pronúncia + gramaticais</code></pre>
+<hr />
+<h3 id="14-upgrade-para-plano-pro-stripe">1.4 — Upgrade para Plano Pro (Stripe)<a class="headerlink" href="#14-upgrade-para-plano-pro-stripe" title="Permanent link">&para;</a></h3>
+<p>O pagamento ocorre na página hospedada pelo Stripe (Checkout). O Backend é notificado via webhook — nunca pelo frontend diretamente.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    actor U as Usuário
+    participant FE as Frontend (Next.js)
+    participant BE as Backend (FastAPI)
+    participant ST as Stripe
+    participant SB as Supabase
+
+    U-&gt;&gt;FE: Clica em "Upgrade para Pro"
+    FE-&gt;&gt;BE: POST /billing/checkout { plan_type: "monthly" }
+    BE-&gt;&gt;ST: stripe.checkout.sessions.create({ mode: "subscription", ... })
+    ST--&gt;&gt;BE: { checkout_url }
+    BE--&gt;&gt;FE: { checkout_url }
+    FE-&gt;&gt;U: Redireciona para página do Stripe
+
+    U-&gt;&gt;ST: Preenche dados do cartão e confirma
+    ST-&gt;&gt;ST: Processa pagamento
+
+    alt Pagamento aprovado
+        ST-&gt;&gt;BE: POST /billing/webhook (event: checkout.session.completed)
+        BE-&gt;&gt;BE: Valida assinatura do webhook (stripe-signature header)
+        BE-&gt;&gt;SB: UPDATE users SET plan = "pro" WHERE id = user_id
+        BE-&gt;&gt;SB: INSERT subscriptions { stripe_customer_id, stripe_subscription_id, status: "active", ... }
+        BE--&gt;&gt;ST: 200 OK
+
+        ST-&gt;&gt;FE: Redireciona para /success?session_id=...
+        FE-&gt;&gt;BE: GET /users/me
+        BE--&gt;&gt;FE: UserProfile { plan: "pro" }
+        FE-&gt;&gt;U: Exibe tela de boas-vindas Pro
+
+    else Pagamento recusado
+        ST-&gt;&gt;FE: Redireciona para /cancel
+        FE-&gt;&gt;U: Exibe mensagem de falha no pagamento
+        Note over SB: Plano do usuário não é alterado
+    end</code></pre>
+<hr />
+<h3 id="15-encerramento-de-sessao">1.5 — Encerramento de Sessão<a class="headerlink" href="#15-encerramento-de-sessao" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>sequenceDiagram
+    actor U as Usuário
+    participant FE as Frontend (Next.js)
+    participant BE as Backend (FastAPI)
+    participant SB as Supabase
+
+    U-&gt;&gt;FE: Clica em "Encerrar sessão"
+    FE-&gt;&gt;BE: PATCH /sessions/{session_id}/end
+
+    BE-&gt;&gt;SB: Busca todas as messages da sessão
+    BE-&gt;&gt;SB: Busca todas as corrections da sessão
+    BE-&gt;&gt;BE: Calcula error_rate = mensagens_com_erro / total_mensagens * 100
+
+    BE-&gt;&gt;SB: UPDATE sessions SET ended_at, error_rate, total_messages
+
+    BE-&gt;&gt;BE: Verifica critério de avanço de nível&lt;br/&gt;(5 sessões consecutivas com error_rate &lt; 20%)
+
+    alt Critério de avanço atingido
+        BE--&gt;&gt;FE: { summary, level_up_suggestion: { from: "B1", to: "B2" } }
+        FE-&gt;&gt;U: Exibe resumo + sugestão de avanço de nível
+        U-&gt;&gt;FE: Aceita ou recusa o avanço
+        FE-&gt;&gt;BE: PATCH /users/me/level { level: "B2", reason: "auto" }
+        BE-&gt;&gt;SB: UPDATE users SET level = "B2"
+        BE-&gt;&gt;SB: INSERT user_levels { from: "B1", to: "B2", reason: "auto" }
+    else Critério não atingido
+        BE--&gt;&gt;FE: { summary }
+        FE-&gt;&gt;U: Exibe resumo da sessão (erros frequentes, total de mensagens)
+    end</code></pre>
+<hr />
+<h2 id="2-contratos-de-api">2. Contratos de API<a class="headerlink" href="#2-contratos-de-api" title="Permanent link">&para;</a></h2>
+<p>Base URL: <code>https://api.fluentloop.com.br/v1</code></p>
+<p>Todas as rotas (exceto <code>/billing/webhook</code>) exigem header:
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;supabase_jwt&gt;
+</code></pre></div></p>
+<hr />
+<h3 id="usuarios">Usuários<a class="headerlink" href="#usuarios" title="Permanent link">&para;</a></h3>
+<h4 id="get-usersme"><code>GET /users/me</code><a class="headerlink" href="#get-usersme" title="Permanent link">&para;</a></h4>
+<p>Retorna o perfil do usuário autenticado.</p>
+<p><strong>Response 200:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user@email.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lucas Mendes&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;avatar_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;B1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;plan&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;free&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;daily_interactions_used&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;daily_reset_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-21T03:00:00Z&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h4 id="patch-usersme"><code>PATCH /users/me</code><a class="headerlink" href="#patch-usersme" title="Permanent link">&para;</a></h4>
+<p>Atualiza nome ou avatar do usuário.</p>
+<p><strong>Request:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lucas M.&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;avatar_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://...&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></p>
+<h4 id="patch-usersmelevel"><code>PATCH /users/me/level</code><a class="headerlink" href="#patch-usersmelevel" title="Permanent link">&para;</a></h4>
+<p>Atualiza o nível do usuário (manual ou confirmação de avanço automático).</p>
+<p><strong>Request:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;B2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;manual&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h3 id="sessoes">Sessões<a class="headerlink" href="#sessoes" title="Permanent link">&para;</a></h3>
+<h4 id="post-sessions"><code>POST /sessions</code><a class="headerlink" href="#post-sessions" title="Permanent link">&para;</a></h4>
+<p>Inicia uma nova sessão.</p>
+<p><strong>Request:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;roleplay&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;pillar&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;speaking&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;scenario_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Response 201:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;roleplay&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;pillar&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;speaking&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;scenario&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Check-in em hotel&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;ai_role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hotel receptionist&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;started_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-21T20:00:00Z&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h4 id="get-sessions"><code>GET /sessions</code><a class="headerlink" href="#get-sessions" title="Permanent link">&para;</a></h4>
+<p>Lista sessões do usuário (paginado).</p>
+<p><strong>Query params:</strong> <code>page</code>, <code>limit</code>, <code>type</code></p>
+<p><strong>Response 200:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;roleplay&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;pillar&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;speaking&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scenario_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Check-in em hotel&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;started_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ended_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;total_messages&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;error_rate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">16.7</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h4 id="get-sessionsid"><code>GET /sessions/{id}</code><a class="headerlink" href="#get-sessionsid" title="Permanent link">&para;</a></h4>
+<p>Retorna detalhes completos de uma sessão (transcript + correções).</p>
+<p><strong>Response 200:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;messages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I want to check in, please.&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;audio_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;corrections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;original_text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I want to check in&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;corrected_text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I&#39;d like to check in&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;error_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vocabulary&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;explanation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&#39;I&#39;d like&#39; is more polite and natural in formal contexts.&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;total_messages&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;error_rate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">16.7</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;most_common_error_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;grammar&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h4 id="patch-sessionsidend"><code>PATCH /sessions/{id}/end</code><a class="headerlink" href="#patch-sessionsidend" title="Permanent link">&para;</a></h4>
+<p>Encerra uma sessão e calcula o resumo.</p>
+<p><strong>Response 200:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;total_messages&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;error_rate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">16.7</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;duration_seconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">480</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;level_up_suggestion&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;from&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;B1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;to&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;B2&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h3 id="chat">Chat<a class="headerlink" href="#chat" title="Permanent link">&para;</a></h3>
+<h4 id="post-chatmessage"><code>POST /chat/message</code><a class="headerlink" href="#post-chatmessage" title="Permanent link">&para;</a></h4>
+<p>Envia mensagem e recebe resposta da IA em streaming (SSE).</p>
+<p><strong>Request:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;session_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I want to check in, please.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;is_voice&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Response:</strong> <code>text/event-stream</code>
+<div class="highlight"><pre><span></span><code>data: {&quot;type&quot;: &quot;token&quot;, &quot;content&quot;: &quot;Sure&quot;}
+data: {&quot;type&quot;: &quot;token&quot;, &quot;content&quot;: &quot;! Let&quot;}
+data: {&quot;type&quot;: &quot;token&quot;, &quot;content&quot;: &quot; me help you.&quot;}
+data: {&quot;type&quot;: &quot;done&quot;, &quot;corrections&quot;: [...], &quot;message_id&quot;: &quot;uuid&quot;}
+</code></pre></div></p>
+<hr />
+<h3 id="voz">Voz<a class="headerlink" href="#voz" title="Permanent link">&para;</a></h3>
+<h4 id="post-speechtranscribe"><code>POST /speech/transcribe</code><a class="headerlink" href="#post-speechtranscribe" title="Permanent link">&para;</a></h4>
+<p>Transcreve áudio e retorna avaliação de pronúncia.</p>
+<p><strong>Request:</strong> <code>multipart/form-data</code>
+- <code>audio</code>: arquivo de áudio (WAV ou WebM)
+- <code>session_id</code>: uuid</p>
+<p><strong>Response 200:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;transcription&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I want to check in please&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;pronunciation_words&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;word&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;I&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;accuracy_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;phoneme_feedback&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;word&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;check&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;accuracy_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">62</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;phoneme_feedback&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The &#39;ch&#39; sound should be /tʃ/, not /ʃ/.&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h4 id="post-speechtts"><code>POST /speech/tts</code><a class="headerlink" href="#post-speechtts" title="Permanent link">&para;</a></h4>
+<p>Gera áudio para um texto (usado internamente após resposta da IA).</p>
+<p><strong>Request:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sure! Let me help you.&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;message_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Response 200:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;audio_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://supabase.storage.../audio/uuid.mp3&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h3 id="cenarios">Cenários<a class="headerlink" href="#cenarios" title="Permanent link">&para;</a></h3>
+<h4 id="get-scenarios"><code>GET /scenarios</code><a class="headerlink" href="#get-scenarios" title="Permanent link">&para;</a></h4>
+<p>Lista cenários disponíveis para o plano do usuário.</p>
+<p><strong>Response 200:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Check-in em hotel&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Pratique um check-in em um hotel internacional.&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ai_role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hotel receptionist&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;travel&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;difficulty&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;B1&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;is_free&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h3 id="pagamentos">Pagamentos<a class="headerlink" href="#pagamentos" title="Permanent link">&para;</a></h3>
+<h4 id="post-billingcheckout"><code>POST /billing/checkout</code><a class="headerlink" href="#post-billingcheckout" title="Permanent link">&para;</a></h4>
+<p>Cria sessão de checkout no Stripe.</p>
+<p><strong>Request:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;plan_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;monthly&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Response 200:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;checkout_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://checkout.stripe.com/...&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></p>
+<h4 id="post-billingwebhook"><code>POST /billing/webhook</code><a class="headerlink" href="#post-billingwebhook" title="Permanent link">&para;</a></h4>
+<p>Recebe eventos do Stripe. <strong>Não requer JWT</strong> — autenticação via <code>stripe-signature</code> header.</p>
+<p>Eventos tratados:
+- <code>checkout.session.completed</code> → ativa plano Pro
+- <code>customer.subscription.deleted</code> → reverte para Free
+- <code>invoice.payment_failed</code> → marca <code>past_due</code></p>
+<h4 id="get-billingsubscription"><code>GET /billing/subscription</code><a class="headerlink" href="#get-billingsubscription" title="Permanent link">&para;</a></h4>
+<p>Retorna dados da assinatura ativa.</p>
+<p><strong>Response 200:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;plan_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;monthly&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;current_period_end&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-21T00:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;stripe_customer_portal_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://billing.stripe.com/...&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h2 id="3-tratamento-de-erros">3. Tratamento de Erros<a class="headerlink" href="#3-tratamento-de-erros" title="Permanent link">&para;</a></h2>
+<h3 id="codigos-de-status">Códigos de status<a class="headerlink" href="#codigos-de-status" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Situação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>400</code></td>
+<td>Request inválido (campos faltando, tipo errado)</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>JWT ausente, inválido ou expirado</td>
+</tr>
+<tr>
+<td><code>403</code></td>
+<td>Recurso não permitido para o plano do usuário</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>Recurso não encontrado</td>
+</tr>
+<tr>
+<td><code>429</code></td>
+<td>Limite diário atingido</td>
+</tr>
+<tr>
+<td><code>503</code></td>
+<td>Serviço externo indisponível (Claude, Azure, OpenAI)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="formato-padrao-de-erro">Formato padrão de erro<a class="headerlink" href="#formato-padrao-de-erro" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;daily_limit_reached&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Você atingiu o limite de 10 interações diárias do plano Free.&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;details&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;used&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;reset_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-22T03:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;upgrade_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/pricing&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="estrategia-por-servico-externo">Estratégia por serviço externo<a class="headerlink" href="#estrategia-por-servico-externo" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Serviço</th>
+<th>Falha</th>
+<th>Comportamento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Claude</strong></td>
+<td>Timeout ou 5xx</td>
+<td>Retorna <code>503</code>, frontend exibe "Tente novamente". Não salva a mensagem.</td>
+</tr>
+<tr>
+<td><strong>Azure Speech</strong></td>
+<td>Falha na transcrição</td>
+<td>Retorna <code>503</code>, frontend oferece fallback para digitação manual</td>
+</tr>
+<tr>
+<td><strong>Azure Speech</strong></td>
+<td>Baixa confiança na transcrição</td>
+<td>Retorna transcrição com flag <code>low_confidence: true</code>, frontend avisa o usuário</td>
+</tr>
+<tr>
+<td><strong>OpenAI TTS</strong></td>
+<td>Falha na geração de áudio</td>
+<td>Retorna resposta em texto normalmente, sem áudio (<code>audio_url: null</code>)</td>
+</tr>
+<tr>
+<td><strong>Stripe webhook</strong></td>
+<td>Falha no processamento</td>
+<td>Retorna <code>500</code>, Stripe retenta automaticamente por até 3 dias</td>
+</tr>
+<tr>
+<td><strong>Supabase</strong></td>
+<td>Falha na escrita</td>
+<td>Retorna <code>503</code>, nenhuma cobrança de interação é feita</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-ciclo-de-vida-da-sessao">4. Ciclo de Vida da Sessão<a class="headerlink" href="#4-ciclo-de-vida-da-sessao" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; Criada : POST /sessions
+
+    Criada --&gt; Ativa : Primeira mensagem enviada
+
+    Ativa --&gt; Ativa : Usuário envia mensagem\nIA responde
+
+    Ativa --&gt; Encerrada : PATCH /sessions/{id}/end\n(usuário encerra manualmente)
+
+    Ativa --&gt; Abandonada : Sem atividade por 30 minutos\n(job agendado no backend)
+
+    Abandonada --&gt; Encerrada : Job encerra a sessão\nsem calcular resumo completo
+
+    Encerrada --&gt; [*]</code></pre>
+<p><strong>Estados:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Estado</th>
+<th>Descrição</th>
+<th><code>ended_at</code></th>
+<th><code>error_rate</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Criada</code></td>
+<td>Sessão iniciada, aguardando primeira mensagem</td>
+<td><code>null</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>Ativa</code></td>
+<td>Conversa em andamento</td>
+<td><code>null</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>Encerrada</code></td>
+<td>Finalizada pelo usuário com resumo calculado</td>
+<td>preenchido</td>
+<td>calculado</td>
+</tr>
+<tr>
+<td><code>Abandonada</code></td>
+<td>Encerrada por inatividade, sem resumo completo</td>
+<td>preenchido</td>
+<td><code>null</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-seguranca">5. Segurança<a class="headerlink" href="#5-seguranca" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Ponto</th>
+<th>Implementação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Autenticação</td>
+<td>JWT gerado pelo Supabase, validado no Backend em toda requisição</td>
+</tr>
+<tr>
+<td>Webhook Stripe</td>
+<td>Validado via <code>stripe-signature</code> header — rejeita qualquer request sem assinatura válida</td>
+</tr>
+<tr>
+<td>Rate limiting</td>
+<td>Middleware no FastAPI: 60 req/min por IP para rotas públicas; limite de interações por usuário no banco</td>
+</tr>
+<tr>
+<td>Inputs do usuário</td>
+<td>Sanitização no Backend antes de enviar ao Claude (prevenção de prompt injection)</td>
+</tr>
+<tr>
+<td>Áudios no Storage</td>
+<td>URLs assinadas com expiração de 1 hora — sem acesso público permanente</td>
+</tr>
+<tr>
+<td>Chaves de API</td>
+<td>Variáveis de ambiente no Railway/Vercel — nunca expostas no frontend</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../overview/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Overview Técnico">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Overview Técnico
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../data-model/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Modelo de Dados">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Modelo de Dados
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.action.edit", "content.code.copy", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
