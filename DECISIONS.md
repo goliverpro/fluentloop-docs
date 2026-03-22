@@ -147,8 +147,8 @@ Ao iniciar uma nova sessão com a IA, compartilhe este arquivo e diga:
 ## Repositórios
 
 - **Docs:** https://github.com/goliverpro/fluentloop-docs
-- **Core (backend + IA):** a criar — `fluentloop-core`
-- **Web (frontend):** a criar — `fluentloop-web`
+- **Core (backend + IA):** https://github.com/goliverpro/fluentloop-core
+- **Web (frontend):** https://github.com/goliverpro/fluentloop-web
 
 ---
 
