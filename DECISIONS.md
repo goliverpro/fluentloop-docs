@@ -55,33 +55,74 @@ Ao iniciar uma nova sessão com a IA, compartilhe este arquivo e diga:
 **Decisão:** Americano ou Britânico (Could Have — não bloqueia MVP).
 **Motivo:** Demanda real, mas não crítica para o lançamento.
 
+### DP-08 — Interface: Web App → PWA (sem mobile nativo no MVP)
+**Decisão:** Web App com Next.js primeiro, PWA na sequência. Mobile nativo fora do escopo do MVP.
+**Motivo:** Mobile nativo é alto investimento para validar o produto. Next.js resolve web, PWA e landing page num único codebase. PWA com microfone atende os três pilares sem fricção.
+
 ---
 
 ## Decisões Técnicas
 
-### DT-01 — Backend Core: Python + FastAPI
+### DT-01 — Backend: Python + FastAPI
 - **Status:** ✅ Decidido
-- **Decisão:** Python com FastAPI
 - **Alternativa considerada:** Java (Spring Boot)
-- **Motivo:** O backend do FluentLoop é 90% I/O bound — orquestra chamadas para LLM, STT e TTS. Nesse cenário, o asyncio do Python lida com alto throughput sem a vantagem de performance do Java ser relevante. O ecossistema Python para IA (SDKs, bibliotecas) é dominante e reduz atrito nas integrações.
-- **Sobre escalabilidade:** Python escala horizontalmente sem problema. O gargalo real serão os custos e rate limits das APIs de IA — não a linguagem. Se um componente específico exigir mais performance no futuro, pode ser extraído como microsserviço isolado (inclusive em Java).
-- **Decisões em aberto:** frontend/interface, banco de dados, provedor de STT, provedor de TTS, modelo de LLM
+- **Motivo:** Backend 90% I/O bound — orquestra chamadas para LLM, STT e TTS. O asyncio do Python lida com alto throughput sem que a vantagem de performance do Java seja relevante. Ecossistema Python para IA é dominante.
+- **Sobre escalabilidade:** Escala horizontalmente sem problema. O gargalo real serão custos e rate limits das APIs de IA. Componentes críticos podem ser extraídos como microsserviços futuramente.
 
-### DT-02 — Interface: Web ou Mobile
-- **Status:** 🔄 Em discussão
-- **Decisões em aberto:** web app, app mobile nativo, ou PWA
+### DT-02 — Frontend: Next.js (React)
+- **Status:** ✅ Decidido
+- **Motivo:** Resolve web app, PWA e landing page de marketing num único projeto. SEO nativo para aquisição orgânica. Caminho natural para PWA sem reescrita.
 
-### DT-03 — Provedor de IA (LLM)
-- **Status:** Pendente
-- **Contexto:** Precisa suportar conversas longas com contexto, correção de erros e adaptação de nível
+### DT-03 — Banco de Dados: Supabase (PostgreSQL)
+- **Status:** ✅ Decidido
+- **Alternativas consideradas:** MySQL/RDS (AWS), MongoDB
+- **Motivo:** Entrega PostgreSQL + Auth (e-mail e Google OAuth) + Storage de áudio num único serviço. Free tier generoso cobre o MVP inteiro sem custo. Gabriel tem familiaridade com MySQL — a diferença no SQL do dia a dia é mínima.
+- **Nota:** Se houver tração e receita, avaliar migração para RDS MySQL na AWS.
 
-### DT-04 — Provedor de STT (Speech-to-Text)
-- **Status:** Pendente
-- **Requisito:** Acurácia ≥ 85% para inglês com sotaque brasileiro
+### DT-04 — Auth: Supabase Auth
+- **Status:** ✅ Decidido
+- **Motivo:** Incluso no Supabase. Suporta e-mail/senha e Google OAuth prontos, sem configuração adicional.
 
-### DT-05 — Provedor de TTS (Text-to-Speech)
-- **Status:** Pendente
-- **Requisito:** Voz neural (não robótica), latência ≤ 3s, suporte a velocidade variável
+### DT-05 — LLM: Claude (Anthropic API)
+- **Status:** ✅ Decidido
+- **Alternativas consideradas:** GPT-4o (OpenAI), Gemini (Google), Claude via Amazon Bedrock
+- **Motivo:** Melhor para instrução nuançada — corrigir erros sem interromper conversa, adaptar nível, assumir personagens, manter contexto longo. Anthropic API direto (sem Bedrock) para evitar custo adicional de infraestrutura AWS no MVP.
+
+### DT-06 — STT + Pronúncia: Azure Speech
+- **Status:** ✅ Decidido
+- **Alternativas consideradas:** OpenAI Whisper, Amazon Transcribe, Deepgram
+- **Motivo:** Único serviço com pronunciation assessment nativo (score por palavra e por fonema) — requisito central dos RFs 50 e 51. Amazon Transcribe não tem esse recurso. 5h/mês gratuitas para MVP.
+
+### DT-07 — TTS: OpenAI TTS
+- **Status:** ✅ Decidido
+- **Alternativas consideradas:** ElevenLabs, Amazon Polly, Azure TTS
+- **Motivo:** Melhor custo-benefício — voz neural de qualidade, barato ($15/1M caracteres), fácil integração. ElevenLabs tem qualidade superior mas é caro para escala. Reavaliação possível pós-MVP se qualidade for feedback recorrente.
+
+### DT-08 — Pagamentos: Stripe
+- **Status:** ✅ Decidido
+- **Motivo:** Padrão do mercado, SDK robusto, suporte a assinaturas recorrentes e webhooks. Gratuito até processar pagamentos.
+
+### DT-09 — Deploy Frontend: Vercel
+- **Status:** ✅ Decidido
+- **Motivo:** Next.js é desenvolvido pela Vercel — integração nativa, deploy automático por push, free tier generoso para MVP.
+
+### DT-10 — Deploy Backend: Railway
+- **Status:** ✅ Decidido
+- **Motivo:** Free tier disponível, suporte a containers Python/FastAPI, simples de configurar. Alternativa: Render.
+
+---
+
+## Stack Final — MVP
+
+| Camada | Tecnologia | Custo MVP |
+|---|---|---|
+| Frontend | Next.js | Grátis (Vercel) |
+| Backend | Python + FastAPI | Grátis (Railway) |
+| Banco de dados + Auth + Storage | Supabase | Grátis (free tier) |
+| LLM | Claude (Anthropic API) | Pay per use |
+| STT + Pronúncia | Azure Speech | 5h/mês grátis |
+| TTS | OpenAI TTS | Pay per use |
+| Pagamentos | Stripe | Grátis até processar |
 
 ---
 
@@ -95,23 +136,23 @@ Ao iniciar uma nova sessão com a IA, compartilhe este arquivo e diga:
 | Requisitos funcionais | `docs/requirements/functional.md` | ✅ Concluído |
 | Requisitos não-funcionais | `docs/requirements/non-functional.md` | ✅ Concluído |
 | Casos de uso | `docs/requirements/use-cases.md` | ✅ Concluído |
-| Arquitetura técnica | `docs/architecture/` | ⏳ Próxima fase |
+| Arquitetura técnica | `docs/architecture/` | 🔄 Em andamento |
 | Design e wireframes | `docs/design/` | ⏳ Pendente |
 | Testes | `docs/testing/` | ⏳ Pendente |
 | Deploy | `docs/deployment/` | ⏳ Pendente |
 
 ---
 
-## Repositório
+## Repositórios
 
 - **Docs:** https://github.com/goliverpro/fluentloop-docs
-- **Core (backend + IA):** a criar
-- **Web (frontend):** a criar
+- **Core (backend + IA):** a criar — `fluentloop-core`
+- **Web (frontend):** a criar — `fluentloop-web`
 
 ---
 
 ## Próximos Passos
 
-1. **Arquitetura Técnica** — definir stack, provedores de STT/TTS/LLM, banco de dados, modelo de deploy
+1. **Arquitetura Técnica** — diagrama de componentes, fluxo de dados, modelo de dados
 2. **Design / Wireframes** — fluxos de tela e protótipo
 3. **Criação dos repositórios** de código (`fluentloop-core` e `fluentloop-web`)

@@ -1,16 +1,27 @@
 # 🏗️ Arquitetura Técnica
 
-> **Status:** ⏳ Pendente
+> **Versão:** 1.0.0 | **Data:** 2026-03-21 | **Status:** 🔄 Em andamento
 
-Esta seção documentará as decisões de arquitetura do FluentLoop.
+---
 
-!!! note "Em construção"
-    Os documentos desta seção serão criados após o levantamento de requisitos.
+## Documentos desta seção
 
-## O que virá aqui
+| Documento | Descrição | Status |
+|---|---|---|
+| [Overview Técnico](overview.md) | Stack, diagrama de componentes e fluxos de dados | ✅ |
+| [Repositórios](repositories.md) | Estrutura dos repositórios do projeto | ✅ |
+| [ADRs](../adr/index.md) | Architecture Decision Records | 🔄 Em andamento |
 
-- Diagrama de arquitetura geral
-- Stack tecnológica e justificativas
-- Modelo de dados
-- Integrações externas (APIs de IA, autenticação, etc.)
-- ADRs — Architecture Decision Records
+---
+
+## Stack resumida
+
+| Camada | Tecnologia |
+|---|---|
+| Frontend | Next.js (React) — Vercel |
+| Backend | Python + FastAPI — Railway |
+| Banco de dados + Auth + Storage | Supabase (PostgreSQL) |
+| LLM | Claude — Anthropic API |
+| STT + Pronúncia | Azure Speech |
+| TTS | OpenAI TTS |
+| Pagamentos | Stripe |
