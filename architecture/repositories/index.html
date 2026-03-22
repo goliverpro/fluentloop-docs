@@ -1009,6 +1009,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repositórios
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1025,6 +1043,80 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visão geral
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluentloop-core-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fluentloop-core — Backend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluentloop-web-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fluentloop-web — Frontend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comunicacao-entre-repositorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comunicação entre repositórios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variaveis-de-ambiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variáveis de ambiente
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1636,14 +1728,171 @@
 
 
 <h1 id="repositorios">Repositórios<a class="headerlink" href="#repositorios" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Em construção</p>
-<p>Este documento será preenchido em uma próxima fase.</p>
-<p><strong>O que virá aqui:</strong>
-- Descrição de cada repositório
-- Responsabilidades e fronteiras
-- Como os repos se comunicam</p>
-</div>
+<blockquote>
+<p><strong>Versão:</strong> 1.0.0 | <strong>Data:</strong> 2026-03-21 | <strong>Status:</strong> ✅ Aprovado</p>
+</blockquote>
+<hr />
+<h2 id="visao-geral">Visão geral<a class="headerlink" href="#visao-geral" title="Permanent link">&para;</a></h2>
+<p>O FluentLoop é dividido em três repositórios com responsabilidades bem separadas:</p>
+<table>
+<thead>
+<tr>
+<th>Repositório</th>
+<th>Tecnologia</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fluentloop-docs</code></td>
+<td>MkDocs + Material</td>
+<td><a href="https://github.com/goliverpro/fluentloop-docs">github.com/goliverpro/fluentloop-docs</a></td>
+</tr>
+<tr>
+<td><code>fluentloop-core</code></td>
+<td>Python + FastAPI</td>
+<td><a href="https://github.com/goliverpro/fluentloop-core">github.com/goliverpro/fluentloop-core</a></td>
+</tr>
+<tr>
+<td><code>fluentloop-web</code></td>
+<td>Next.js + React</td>
+<td><a href="https://github.com/goliverpro/fluentloop-web">github.com/goliverpro/fluentloop-web</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="fluentloop-core-backend"><code>fluentloop-core</code> — Backend<a class="headerlink" href="#fluentloop-core-backend" title="Permanent link">&para;</a></h2>
+<p><strong>Responsabilidade:</strong> Toda a lógica de negócio e orquestração de serviços de IA.</p>
+<div class="highlight"><pre><span></span><code>fluentloop-core/
+├── app/
+│   ├── main.py           # FastAPI entry point, CORS, rate limiting
+│   ├── config.py         # Settings via pydantic-settings (.env)
+│   ├── db/
+│   │   └── supabase.py   # Cliente Supabase singleton
+│   ├── middleware/
+│   │   └── auth.py       # Validação de JWT em toda requisição autenticada
+│   ├── routers/          # Endpoints por domínio
+│   │   ├── users.py      # GET /me, PATCH /me, PATCH /me/level
+│   │   ├── sessions.py   # CRUD de sessões + encerramento
+│   │   ├── chat.py       # POST /message (SSE streaming com Claude)
+│   │   ├── speech.py     # POST /transcribe (Azure STT) + /tts (OpenAI)
+│   │   ├── scenarios.py  # GET /scenarios
+│   │   └── billing.py    # Stripe checkout + webhook
+│   ├── services/         # Lógica de negócio e integrações externas
+│   └── models/           # Schemas Pydantic (request/response)
+├── tests/
+├── .env.example
+├── Dockerfile
+└── requirements.txt
+</code></pre></div>
+<p><strong>O que NÃO faz:</strong>
+- Não serve assets estáticos
+- Não gerencia autenticação (delega ao Supabase Auth)
+- Não processa pagamentos diretamente (delega ao Stripe)</p>
+<hr />
+<h2 id="fluentloop-web-frontend"><code>fluentloop-web</code> — Frontend<a class="headerlink" href="#fluentloop-web-frontend" title="Permanent link">&para;</a></h2>
+<p><strong>Responsabilidade:</strong> Interface do usuário e experiência de conversação.</p>
+<div class="highlight"><pre><span></span><code>fluentloop-web/
+├── src/
+│   ├── app/
+│   │   ├── (auth)/           # Rotas públicas: login, cadastro
+│   │   │   ├── login/
+│   │   │   └── register/
+│   │   ├── (app)/            # Rotas protegidas (requerem auth)
+│   │   │   ├── dashboard/
+│   │   │   ├── chat/
+│   │   │   ├── history/
+│   │   │   ├── profile/
+│   │   │   └── scenarios/
+│   │   ├── onboarding/       # Seleção de nível (pós-cadastro)
+│   │   ├── layout.tsx        # Layout raiz
+│   │   ├── page.tsx          # Landing page
+│   │   └── globals.css
+│   ├── components/
+│   │   ├── ui/               # Primitivos: Button, Input, Badge, Modal
+│   │   ├── chat/             # MessageBubble, CorrectionCard, ChatInput
+│   │   ├── voice/            # PushToTalkButton, AudioPlayer, WaveVisualizer
+│   │   └── layout/           # BottomNav, Header, PageWrapper
+│   ├── lib/
+│   │   ├── supabase.ts       # Cliente Supabase (browser)
+│   │   └── api.ts            # Fetch wrapper com JWT automático
+│   ├── hooks/                # useSession, useChat, useVoice, useAudio
+│   └── types/
+│       └── index.ts          # Tipos TypeScript de todo o domínio
+├── tailwind.config.ts        # Design tokens do style guide
+├── tsconfig.json
+└── package.json
+</code></pre></div>
+<p><strong>O que NÃO faz:</strong>
+- Não chama APIs de IA diretamente (passa sempre pelo backend)
+- Não guarda chaves de API (apenas as chaves públicas do Supabase e Stripe)</p>
+<hr />
+<h2 id="comunicacao-entre-repositorios">Comunicação entre repositórios<a class="headerlink" href="#comunicacao-entre-repositorios" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>fluentloop-web  ──HTTPS──►  fluentloop-core  ──►  Anthropic API
+                                             ──►  Azure Speech
+                                             ──►  OpenAI TTS
+                                             ──►  Stripe
+
+fluentloop-web  ──HTTPS──►  Supabase Auth (direto, sem passar pelo backend)
+fluentloop-core ──────────►  Supabase DB + Storage (service role key)
+</code></pre></div>
+<p><strong>Regra importante:</strong> O frontend nunca chama APIs de IA diretamente. Todo tráfego de IA passa pelo backend, onde ficam as chaves secretas e o rate limiting.</p>
+<hr />
+<h2 id="variaveis-de-ambiente">Variáveis de ambiente<a class="headerlink" href="#variaveis-de-ambiente" title="Permanent link">&para;</a></h2>
+<p><strong><code>fluentloop-core</code> (Railway — nunca expostas):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Variável</th>
+<th>Serviço</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SUPABASE_URL</code> + <code>SUPABASE_SERVICE_ROLE_KEY</code></td>
+<td>Supabase</td>
+</tr>
+<tr>
+<td><code>ANTHROPIC_API_KEY</code></td>
+<td>Claude</td>
+</tr>
+<tr>
+<td><code>AZURE_SPEECH_KEY</code> + <code>AZURE_SPEECH_REGION</code></td>
+<td>Azure Speech</td>
+</tr>
+<tr>
+<td><code>OPENAI_API_KEY</code></td>
+<td>OpenAI TTS</td>
+</tr>
+<tr>
+<td><code>STRIPE_SECRET_KEY</code> + <code>STRIPE_WEBHOOK_SECRET</code></td>
+<td>Stripe</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>fluentloop-web</code> (Vercel — apenas chaves públicas):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Variável</th>
+<th>Serviço</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NEXT_PUBLIC_SUPABASE_URL</code> + <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code></td>
+<td>Supabase</td>
+</tr>
+<tr>
+<td><code>NEXT_PUBLIC_API_URL</code></td>
+<td>Backend</td>
+</tr>
+<tr>
+<td><code>NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY</code></td>
+<td>Stripe</td>
+</tr>
+</tbody>
+</table>
 
 
 

@@ -685,10 +685,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fase-1-mvp-em-planejamento" class="md-nav__link">
+  <a href="#fase-1-mvp-em-desenvolvimento" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fase 1 — MVP 🔵 (em planejamento)
+        Fase 1 — MVP 🔵 (em desenvolvimento)
       
     </span>
   </a>
@@ -696,10 +696,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fase-2-voz-bloqueado-pela-fase-1" class="md-nav__link">
+  <a href="#fase-2-engajamento-bloqueado-pela-fase-1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fase 2 — Voz 🔒 (bloqueado pela Fase 1)
+        Fase 2 — Engajamento 🔒 (bloqueado pela Fase 1)
       
     </span>
   </a>
@@ -707,10 +707,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fase-3-engajamento" class="md-nav__link">
+  <a href="#fase-3-pwa" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fase 3 — Engajamento 🔒
+        Fase 3 — PWA 🔒
       
     </span>
   </a>
@@ -1753,47 +1753,73 @@
 <ul>
 <li>[x] Visão do produto</li>
 <li>[x] Personas</li>
-<li>[x] Estrutura de repositórios</li>
-<li>[x] Levantamento de requisitos</li>
-<li>[ ] Arquitetura técnica</li>
-<li>[ ] Wireframes</li>
+<li>[x] Levantamento de requisitos (funcionais, não-funcionais, casos de uso)</li>
+<li>[x] Arquitetura técnica (stack, SDD, modelo de dados, segurança)</li>
+<li>[x] Wireframes (14 telas)</li>
+<li>[x] Style guide (cores, tipografia, componentes)</li>
+<li>[x] Criação dos repositórios de código (<code>fluentloop-core</code>, <code>fluentloop-web</code>)</li>
 </ul>
 <hr />
-<h3 id="fase-1-mvp-em-planejamento">Fase 1 — MVP 🔵 <em>(em planejamento)</em><a class="headerlink" href="#fase-1-mvp-em-planejamento" title="Permanent link">&para;</a></h3>
-<p><strong>Objetivo:</strong> Lançar a versão mínima com o fluxo central de conversação funcionando.</p>
-<p><strong>Funcionalidades:</strong>
-- [ ] Autenticação (e-mail + Google)
-- [ ] Chat por texto com IA
-- [ ] Correção de erros em tempo real
-- [ ] 3 cenários de roleplay (texto)
-- [ ] Histórico de conversas
-- [ ] Plano Free com limites</p>
+<h3 id="fase-1-mvp-em-desenvolvimento">Fase 1 — MVP 🔵 <em>(em desenvolvimento)</em><a class="headerlink" href="#fase-1-mvp-em-desenvolvimento" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong> Lançar a versão mínima com os três pilares funcionando — escrita, fala e compreensão.</p>
+<p><strong>Backend (<code>fluentloop-core</code>):</strong>
+- [ ] Autenticação — validação de JWT via Supabase
+- [ ] <code>GET /users/me</code> — perfil do usuário
+- [ ] <code>POST /sessions</code> e <code>PATCH /sessions/{id}/end</code> — ciclo de vida da sessão
+- [ ] <code>POST /chat/message</code> — SSE streaming com Claude
+- [ ] <code>POST /speech/transcribe</code> — STT + avaliação de pronúncia (Azure Speech)
+- [ ] <code>POST /speech/tts</code> — síntese de voz (OpenAI TTS)
+- [ ] <code>GET /scenarios</code> — listagem de cenários
+- [ ] <code>POST /billing/checkout</code> e webhook Stripe
+- [ ] Rate limiting por usuário e por IP
+- [ ] Nivelamento adaptativo (lógica de error_rate + sugestão de avanço)</p>
+<p><strong>Frontend (<code>fluentloop-web</code>):</strong>
+- [ ] Landing page
+- [ ] Cadastro e login (e-mail + Google OAuth)
+- [ ] Onboarding (seleção de nível)
+- [ ] Home / Dashboard
+- [ ] Sessão de chat — modo texto (streaming)
+- [ ] Sessão de chat — modo voz (PTT + transcrição + pronúncia)
+- [ ] Sessão de chat — modo compreensão (player TTS)
+- [ ] Seleção de cenários
+- [ ] Encerramento + resumo de sessão
+- [ ] Histórico de sessões
+- [ ] Detalhe de sessão (transcript)
+- [ ] Perfil e configurações
+- [ ] Página de planos + modal de limite</p>
+<p><strong>Infra:</strong>
+- [ ] Deploy do backend no Railway
+- [ ] Deploy do frontend na Vercel
+- [ ] Domínio + Cloudflare configurado
+- [ ] Variáveis de ambiente configuradas em produção
+- [ ] Supabase — tabelas criadas + RLS configurado</p>
 <hr />
-<h3 id="fase-2-voz-bloqueado-pela-fase-1">Fase 2 — Voz 🔒 <em>(bloqueado pela Fase 1)</em><a class="headerlink" href="#fase-2-voz-bloqueado-pela-fase-1" title="Permanent link">&para;</a></h3>
-<p><strong>Objetivo:</strong> Adicionar a camada de voz ao produto.</p>
+<h3 id="fase-2-engajamento-bloqueado-pela-fase-1">Fase 2 — Engajamento 🔒 <em>(bloqueado pela Fase 1)</em><a class="headerlink" href="#fase-2-engajamento-bloqueado-pela-fase-1" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong> Aumentar retenção e conversão Free → Pro.</p>
 <ul>
-<li>[ ] Input de voz (speech-to-text)</li>
-<li>[ ] Output de voz (text-to-speech)</li>
-<li>[ ] Roleplay por voz</li>
-<li>[ ] Correção de pronúncia</li>
-</ul>
-<hr />
-<h3 id="fase-3-engajamento">Fase 3 — Engajamento 🔒<a class="headerlink" href="#fase-3-engajamento" title="Permanent link">&para;</a></h3>
-<p><strong>Objetivo:</strong> Aumentar retenção e conversão para Pro.</p>
-<ul>
-<li>[ ] Dashboard de progresso</li>
-<li>[ ] Sistema de streak</li>
+<li>[ ] Dashboard de progresso por pilar</li>
+<li>[ ] Sistema de streak diário</li>
 <li>[ ] Conquistas (badges)</li>
-<li>[ ] Plano Pro com pagamento</li>
+<li>[ ] Relatório semanal por e-mail</li>
+<li>[ ] Notificações push (PWA)</li>
+</ul>
+<hr />
+<h3 id="fase-3-pwa">Fase 3 — PWA 🔒<a class="headerlink" href="#fase-3-pwa" title="Permanent link">&para;</a></h3>
+<p><strong>Objetivo:</strong> Transformar o web app em PWA instalável no celular.</p>
+<ul>
+<li>[ ] <code>manifest.json</code> configurado</li>
+<li>[ ] Service Worker (cache offline de assets)</li>
+<li>[ ] Ícone e splash screen</li>
+<li>[ ] Testado em iOS e Android</li>
 </ul>
 <hr />
 <h3 id="fase-4-expansao">Fase 4 — Expansão 🔒<a class="headerlink" href="#fase-4-expansao" title="Permanent link">&para;</a></h3>
 <p><strong>Objetivo:</strong> Crescer base e explorar novos canais.</p>
 <ul>
-<li>[ ] App mobile (PWA ou nativo)</li>
 <li>[ ] Novos cenários de roleplay</li>
-<li>[ ] Modo de prática com tema livre</li>
-<li>[ ] Relatório semanal por e-mail</li>
+<li>[ ] Dashboard de progresso avançado</li>
+<li>[ ] App mobile nativo (avaliar após tração)</li>
+<li>[ ] API pública para parceiros</li>
 </ul>
 <hr />
 <div class="admonition warning">
