@@ -9,7 +9,7 @@
 | Documento | Descrição | Status |
 |---|---|---|
 | [Wireframes](wireframes.md) | 14 telas do MVP com fluxo de navegação | ✅ |
-| [Style Guide](style-guide.md) | Cores, tipografia e componentes | ⏳ Pendente |
+| [Style Guide](style-guide.md) | Cores, tipografia e componentes | ✅ |
 
 ---
 
