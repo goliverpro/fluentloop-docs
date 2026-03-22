@@ -1,15 +1,13 @@
 site_name: FluentLoop Docs
 site_description: Documentação oficial do FluentLoop — AI-powered English conversation practice
-site_url: https://seu-usuario.github.io/fluentloop-docs
-repo_url: https://github.com/seu-usuario/fluentloop-docs
+site_url: https://goliverpro.github.io/fluentloop-docs
+repo_url: https://github.com/goliverpro/fluentloop-docs
 repo_name: fluentloop-docs
 edit_uri: edit/main/docs/
 
 theme:
   name: material
   language: pt
-  logo: assets/logo.png
-  favicon: assets/logo.png
   palette:
     - scheme: default
       primary: indigo
@@ -55,15 +53,31 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Produto:
-    - Visão: product/vision.md
+    - Visão do Produto: product/vision.md
+    - Personas: product/personas.md
+    - Roadmap: product/roadmap.md
   - Requisitos:
     - Visão Geral: requirements/index.md
+    - Requisitos Funcionais: requirements/functional.md
+    - Requisitos Não-Funcionais: requirements/non-functional.md
+    - Casos de Uso: requirements/use-cases.md
   - Arquitetura:
     - Visão Geral: architecture/index.md
+    - Overview Técnico: architecture/overview.md
+    - Repositórios: architecture/repositories.md
     - ADRs: adr/index.md
+    - ADRs (lista): adr/adrs.md
   - Design:
     - Visão Geral: design/index.md
+    - Style Guide: design/style-guide.md
+    - Wireframes: design/wireframes.md
+  - Desenvolvimento:
+    - Convenções: dev/conventions.md
+    - Workflow: dev/workflow.md
   - Testes:
     - Estratégia: testing/index.md
+    - CI/CD: testing/strategy.md
   - Deploy:
     - Visão Geral: deployment/index.md
+    - Ambientes: deployment/environments.md
+    - CI/CD: deployment/cicd.md

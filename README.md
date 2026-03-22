@@ -2,7 +2,7 @@
 
 Repositório central de documentação do projeto **FluentLoop** — AI-powered English conversation practice.
 
-> 📖 **Documentação publicada:** [https://seu-usuario.github.io/fluentloop-docs](https://seu-usuario.github.io/fluentloop-docs)
+> 📖 **Documentação publicada:** [https://goliverpro.github.io/fluentloop-docs](https://goliverpro.github.io/fluentloop-docs)
 
 ---
 
@@ -10,9 +10,9 @@ Repositório central de documentação do projeto **FluentLoop** — AI-powered 
 
 | Repositório | Descrição | Status |
 |---|---|---|
-| [fluentloop-docs](https://github.com/seu-usuario/fluentloop-docs) | 📚 Documentação central (você está aqui) | ✅ Ativo |
-| [fluentloop-core](https://github.com/seu-usuario/fluentloop-core) | ⚙️ Backend + serviço de IA | 🔜 Em breve |
-| [fluentloop-web](https://github.com/seu-usuario/fluentloop-web) | 🌐 Frontend web | 🔜 Em breve |
+| [fluentloop-docs](https://github.com/goliverpro/fluentloop-docs) | 📚 Documentação central (você está aqui) | ✅ Ativo |
+| [fluentloop-core](https://github.com/goliverpro/fluentloop-core) | ⚙️ Backend + serviço de IA | 🔜 Em breve |
+| [fluentloop-web](https://github.com/goliverpro/fluentloop-web) | 🌐 Frontend web | 🔜 Em breve |
 
 ---
 
@@ -21,8 +21,8 @@ Repositório central de documentação do projeto **FluentLoop** — AI-powered 
 | Fase | Documento | Status |
 |---|---|---|
 | 1. Visão do Produto | [product/vision.md](docs/product/vision.md) | ✅ Concluído |
-| 2. Levantamento de Requisitos | [requirements/](docs/requirements/) | 🔄 Em andamento |
-| 3. Arquitetura Técnica | [architecture/](docs/architecture/) | ⏳ Pendente |
+| 2. Levantamento de Requisitos | [requirements/](docs/requirements/) | ✅ Concluído |
+| 3. Arquitetura Técnica | [architecture/](docs/architecture/) | 🔄 Em andamento |
 | 4. Prototipação & Design | [design/](docs/design/) | ⏳ Pendente |
 | 5. Testes | [testing/](docs/testing/) | ⏳ Pendente |
 | 6. Deploy & Lançamento | [deployment/](docs/deployment/) | ⏳ Pendente |
