@@ -11,41 +11,44 @@ Repositório central de documentação do projeto **FluentLoop** — AI-powered 
 | Repositório | Descrição | Status |
 |---|---|---|
 | [fluentloop-docs](https://github.com/goliverpro/fluentloop-docs) | 📚 Documentação central (você está aqui) | ✅ Ativo |
-| [fluentloop-core](https://github.com/goliverpro/fluentloop-core) | ⚙️ Backend + serviço de IA | 🔜 Em breve |
-| [fluentloop-web](https://github.com/goliverpro/fluentloop-web) | 🌐 Frontend web | 🔜 Em breve |
+| [fluentloop-core](https://github.com/goliverpro/fluentloop-core) | ⚙️ Backend — Python + FastAPI | 🔵 Em desenvolvimento |
+| [fluentloop-web](https://github.com/goliverpro/fluentloop-web) | 🌐 Frontend — Next.js | 🔵 Em desenvolvimento |
 
 ---
 
-## 📋 Fases do Projeto
+## 📋 Ciclo de Vida do Projeto
 
-| Fase | Documento | Status |
+| Fase | Descrição | Status |
 |---|---|---|
-| 1. Visão do Produto | [product/vision.md](docs/product/vision.md) | ✅ Concluído |
-| 2. Levantamento de Requisitos | [requirements/](docs/requirements/) | ✅ Concluído |
-| 3. Arquitetura Técnica | [architecture/](docs/architecture/) | 🔄 Em andamento |
-| 4. Prototipação & Design | [design/](docs/design/) | ⏳ Pendente |
-| 5. Testes | [testing/](docs/testing/) | ⏳ Pendente |
-| 6. Deploy & Lançamento | [deployment/](docs/deployment/) | ⏳ Pendente |
+| 0. Fundação | Visão, requisitos, arquitetura, design, repositórios | ✅ Concluído |
+| 1. MVP | Desenvolvimento dos três pilares (escrita, fala, compreensão) | 🔵 Em andamento |
+| 2. Engajamento | Streak, badges, notificações, relatórios | 🔒 Pendente |
+| 3. PWA | App instalável no celular | 🔒 Pendente |
+| 4. Expansão | Novos cenários, mobile nativo, API pública | 🔒 Pendente |
+
+---
+
+## 📑 Documentação
+
+| Seção | Documentos | Status |
+|---|---|---|
+| **Produto** | Visão, Personas, Roadmap | ✅ |
+| **Requisitos** | Funcionais, Não-funcionais, Casos de uso | ✅ |
+| **Arquitetura** | Overview, SDD, Modelo de dados, Segurança | ✅ |
+| **Design** | Wireframes (14 telas), Style guide | ✅ |
+| **Desenvolvimento** | Convenções, Workflow | ⏳ |
+| **Testes** | Estratégia, CI/CD | ⏳ |
+| **Deploy** | Ambientes, CI/CD | ⏳ |
 
 ---
 
 ## 🚀 Rodando a documentação localmente
 
 ```bash
-# Instalar dependências
 pip install mkdocs-material
-
-# Rodar servidor local
 mkdocs serve
-
-# Acessar em http://localhost:8000
+# Acesse http://localhost:8000
 ```
-
----
-
-## 🤝 Contribuindo
-
-Veja [CONTRIBUTING.md](CONTRIBUTING.md) para entender como propor alterações na documentação.
 
 ---
 
