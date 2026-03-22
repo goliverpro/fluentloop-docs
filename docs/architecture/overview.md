@@ -18,6 +18,7 @@
 | Pagamentos | Stripe | Padrão de mercado para assinaturas recorrentes |
 | Deploy Frontend | Vercel | Integração nativa com Next.js, free tier generoso |
 | Deploy Backend | Railway | Free tier para MVP, suporte a containers FastAPI |
+| DDoS / WAF / CDN | Cloudflare | Proxy reverso obrigatório — proteção antes de chegar nos servidores |
 
 ---
 
@@ -30,6 +31,18 @@
 └────────────────────────┬────────────────────────────────┘
                          │ HTTPS
 ┌────────────────────────▼────────────────────────────────┐
+│                   CLOUDFLARE                            │
+│       DDoS · WAF · Bot Protection · CDN · Rate Limit   │
+└──────────────┬──────────────────────┬───────────────────┘
+               │                      │
+               │ fluentloop.com.br    │ api.fluentloop.com.br
+               ▼                      ▼
+┌──────────────────────┐   ┌──────────────────────────────┐
+│      FRONTEND        │   │           BACKEND             │
+│   Next.js — Vercel   │   │    Python + FastAPI — Railway │
+└──────────────────────┘   └──────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
 │                   FRONTEND                              │
 │              Next.js — Vercel                           │
 │                                                         │

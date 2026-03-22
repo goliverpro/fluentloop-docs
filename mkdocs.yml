@@ -70,6 +70,7 @@ nav:
     - Visão Geral: architecture/index.md
     - Overview Técnico: architecture/overview.md
     - SDD: architecture/sdd.md
+    - Rate Limit, Cache e Segurança: architecture/rate-limit-cache-security.md
     - Modelo de Dados: architecture/data-model.md
     - Repositórios: architecture/repositories.md
     - ADRs: adr/index.md

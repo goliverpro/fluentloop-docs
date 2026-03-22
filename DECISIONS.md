@@ -123,6 +123,7 @@ Ao iniciar uma nova sessão com a IA, compartilhe este arquivo e diga:
 | STT + Pronúncia | Azure Speech | 5h/mês grátis |
 | TTS | OpenAI TTS | Pay per use |
 | Pagamentos | Stripe | Grátis até processar |
+| DDoS / WAF / CDN | Cloudflare | Grátis |
 
 ---
 
