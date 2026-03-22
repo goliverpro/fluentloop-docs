@@ -6,29 +6,42 @@ Esta é a documentação oficial do **FluentLoop**, um aplicativo web de prátic
 
 ## 🗂️ Repositórios do Projeto
 
-| Repositório | Descrição |
-|---|---|
-| [fluentloop-docs](https://github.com/seu-usuario/fluentloop-docs) | 📚 Documentação central (você está aqui) |
-| [fluentloop-core](https://github.com/seu-usuario/fluentloop-core) | ⚙️ Backend + serviço de IA |
-| [fluentloop-web](https://github.com/seu-usuario/fluentloop-web) | 🌐 Frontend web |
+| Repositório | Descrição | Status |
+|---|---|---|
+| [fluentloop-docs](https://github.com/goliverpro/fluentloop-docs) | 📚 Documentação central (você está aqui) | ✅ Ativo |
+| [fluentloop-core](https://github.com/goliverpro/fluentloop-core) | ⚙️ Backend — Python + FastAPI | 🔵 Em desenvolvimento |
+| [fluentloop-web](https://github.com/goliverpro/fluentloop-web) | 🌐 Frontend — Next.js | 🔵 Em desenvolvimento |
 
 ---
 
 ## 📋 Status das Fases
 
-| Fase | Status |
-|---|---|
-| 1. Visão do Produto | ✅ Concluído |
-| 2. Levantamento de Requisitos | 🔄 Em andamento |
-| 3. Arquitetura Técnica | ⏳ Pendente |
-| 4. Prototipação & Design | ⏳ Pendente |
-| 5. Testes | ⏳ Pendente |
-| 6. Deploy & Lançamento | ⏳ Pendente |
+| Fase | Descrição | Status |
+|---|---|---|
+| **Fase 0 — Fundação** | Visão, requisitos, arquitetura, design, repositórios | ✅ Concluído |
+| **Fase 1 — MVP** | Escrita, fala e compreensão funcionando ponta a ponta | 🔵 Em andamento |
+| **Fase 2 — Engajamento** | Streak, badges, notificações, relatórios | 🔒 Pendente |
+| **Fase 3 — PWA** | App instalável no celular | 🔒 Pendente |
+| **Fase 4 — Expansão** | Novos cenários, mobile nativo, API pública | 🔒 Pendente |
+
+---
+
+## 📑 Status da Documentação
+
+| Seção | Documentos | Status |
+|---|---|---|
+| **Produto** | Visão, Personas, Roadmap | ✅ Concluído |
+| **Requisitos** | Funcionais, Não-funcionais, Casos de uso | ✅ Concluído |
+| **Arquitetura** | Overview, SDD, Modelo de dados, Segurança, Repositórios, ADRs | ✅ Concluído |
+| **Design** | Wireframes (14 telas), Style guide | ✅ Concluído |
+| **Desenvolvimento** | Convenções, Workflow | ⏳ Pendente |
+| **Testes** | Estratégia, CI/CD | ⏳ Pendente |
+| **Deploy** | Ambientes, CI/CD | ⏳ Pendente |
 
 ---
 
 ## 🚀 Por onde começar?
 
 - Leia a [Visão do Produto](product/vision.md) para entender o que o FluentLoop é e para quem serve.
-- Acompanhe os [Requisitos](requirements/index.md) para entender o que será construído.
-- Veja as decisões de [Arquitetura](architecture/index.md) quando disponíveis.
+- Veja a [Arquitetura](architecture/index.md) para entender como o sistema foi desenhado.
+- Acompanhe o [Roadmap](product/roadmap.md) para saber o que está sendo construído agora.
