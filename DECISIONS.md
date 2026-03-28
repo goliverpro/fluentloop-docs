@@ -83,15 +83,30 @@ Ao iniciar uma nova sessão com a IA, compartilhe este arquivo e diga:
 - **Status:** ✅ Decidido
 - **Motivo:** Incluso no Supabase. Suporta e-mail/senha e Google OAuth prontos, sem configuração adicional.
 
-### DT-05 — LLM: Claude (Anthropic API)
-- **Status:** ✅ Decidido
+### DT-05 — LLM: Claude (Anthropic API) → GPT-4o-mini no MVP
+- **Status:** ✅ Decidido (revisado em 2026-03-25)
 - **Alternativas consideradas:** GPT-4o (OpenAI), Gemini (Google), Claude via Amazon Bedrock
-- **Motivo:** Melhor para instrução nuançada — corrigir erros sem interromper conversa, adaptar nível, assumir personagens, manter contexto longo. Anthropic API direto (sem Bedrock) para evitar custo adicional de infraestrutura AWS no MVP.
+- **Motivo original:** Claude tem melhor desempenho para instrução nuançada — corrigir erros sem interromper conversa, adaptar nível, assumir personagens, manter contexto longo.
+- **Revisão para MVP:** Para reduzir custo durante testes e validação, o chat passou a usar **GPT-4o-mini** (OpenAI). A `ANTHROPIC_API_KEY` foi tornada opcional. A migração de volta para Claude pode ser feita alterando o cliente em `app/services/chat.py` e o modelo para `claude-3-5-haiku-20241022`.
 
-### DT-06 — STT + Pronúncia: Azure Speech
-- **Status:** ✅ Decidido
+### DT-06 — STT + Pronúncia: Azure Speech → OpenAI Whisper no MVP
+- **Status:** ✅ Decidido (revisado em 2026-03-25)
 - **Alternativas consideradas:** OpenAI Whisper, Amazon Transcribe, Deepgram
-- **Motivo:** Único serviço com pronunciation assessment nativo (score por palavra e por fonema) — requisito central dos RFs 50 e 51. Amazon Transcribe não tem esse recurso. 5h/mês gratuitas para MVP.
+- **Motivo original:** Azure Speech é o único serviço com pronunciation assessment nativo (score por palavra e por fonema) — requisito central dos RFs 50 e 51. Amazon Transcribe não tem esse recurso.
+- **Revisão para MVP:** Para eliminar a dependência da chave Azure durante testes, o STT passou a usar **OpenAI Whisper** (`whisper-1`). Apenas transcreve o áudio — o campo `words` retorna vazio (sem score de pronúncia).
+- **`AZURE_SPEECH_KEY` tornada opcional no MVP.**
+- **Evolução planejada (pós-validação):** Migrar de volta para Azure Speech para habilitar o feedback de pronúncia palavra a palavra. Ver guia de migração abaixo.
+
+#### Guia de migração: Whisper → Azure Speech (feedback de pronúncia)
+
+1. Adicionar `azure-cognitiveservices-speech` ao `requirements.txt`
+2. Preencher `AZURE_SPEECH_KEY` e `AZURE_SPEECH_REGION` no `.env`
+3. Substituir a função `transcribe_audio` em `app/services/speech.py` pelo cliente Azure com `PronunciationAssessmentConfig`:
+   - `grading_system`: `HundredMark`
+   - `granularity`: `Phoneme`
+   - `enable_miscue`: `True`
+4. Preencher o campo `words` da resposta com `accuracy_score` por palavra
+5. No frontend, exibir o score por palavra no componente de feedback de pronúncia
 
 ### DT-07 — TTS: OpenAI TTS
 - **Status:** ✅ Decidido
@@ -119,8 +134,8 @@ Ao iniciar uma nova sessão com a IA, compartilhe este arquivo e diga:
 | Frontend | Next.js | Grátis (Vercel) |
 | Backend | Python + FastAPI | Grátis (Railway) |
 | Banco de dados + Auth + Storage | Supabase | Grátis (free tier) |
-| LLM | Claude (Anthropic API) | Pay per use |
-| STT + Pronúncia | Azure Speech | 5h/mês grátis |
+| LLM | GPT-4o-mini (OpenAI) — MVP | Pay per use (barato) |
+| STT | OpenAI Whisper — MVP (sem pronúncia) | Pay per use (barato) |
 | TTS | OpenAI TTS | Pay per use |
 | Pagamentos | Stripe | Grátis até processar |
 | DDoS / WAF / CDN | Cloudflare | Grátis |
@@ -163,13 +178,11 @@ Ao iniciar uma nova sessão com a IA, compartilhe este arquivo e diga:
 
 **Fase 0 concluída.** Toda a documentação de produto, requisitos, arquitetura e design está aprovada.
 
-A próxima etapa é a **implementação da Fase 1 (MVP)**. A ordem sugerida:
+**Fase 1 em andamento.** Backend e frontend implementados, aguardando chaves de API para teste.
 
-1. **Backend (`fluentloop-core`)** — estrutura base: config, middleware de auth, primeiro router
-2. **Supabase** — criar tabelas e configurar RLS
-3. **Frontend (`fluentloop-web`)** — estrutura base: layout, rotas, cliente de API
-4. **Integração ponta a ponta** — um fluxo completo funcionando (ex: login → chat → resposta streaming)
+- Banco de dados criado no Supabase (migration executada em 2026-03-22)
+- Backend 100% implementado — PR: https://github.com/goliverpro/fluentloop-core/pull/1
+- Frontend 100% implementado — PR: https://github.com/goliverpro/fluentloop-web/pull/1
 
-**Repositórios criados e prontos:**
-- Backend: `C:\Users\gabri\Documents\IA\fluentloop-core`
-- Frontend: `C:\Users\gabri\Documents\IA\fluentloop-web`
+**Próximo passo:** preencher chaves de API (OpenAI, Azure Speech) e testar localmente.
+Veja `FOLLOWUP.md` para a lista detalhada.

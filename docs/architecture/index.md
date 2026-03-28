@@ -10,6 +10,7 @@
 |---|---|---|
 | [Overview Técnico](overview.md) | Stack, diagrama de componentes e fluxos de dados | ✅ |
 | [SDD](sdd.md) | Diagramas de sequência, contratos de API, erros e ciclo de vida | ✅ |
+| [Rate Limit, Cache e Segurança](rate-limit-cache-security.md) | Estratégia de proteção contra sobrecarga e ataques | ✅ |
 | [Modelo de Dados](data-model.md) | Diagrama ER e descrição das tabelas | ✅ |
 | [Repositórios](repositories.md) | Estrutura dos repositórios do projeto | ✅ |
 | [ADRs](../adr/index.md) | Architecture Decision Records | 🔄 Em andamento |
